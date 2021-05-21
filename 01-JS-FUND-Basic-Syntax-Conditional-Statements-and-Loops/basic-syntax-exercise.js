@@ -129,4 +129,3 @@ function multiplicationTable(input) {
     }
     return output.join('\n');
 }
-
