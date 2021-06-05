@@ -39,3 +39,8 @@ function sumLastKNumbersSequence(n, k) {
 // console.log(sumLastKNumbersSequence(9, 5));
 
 // filter elements
+
+let arr = [1, 2, 3];
+
+arr.splice(1, 5);
+console.log(arr);
