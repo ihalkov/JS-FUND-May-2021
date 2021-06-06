@@ -124,7 +124,7 @@ console.log(movies(
 ));
 
 function inventory(input = []) {
-
+    
 }
 
 console.log(inventory(
