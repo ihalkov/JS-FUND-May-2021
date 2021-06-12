@@ -58,3 +58,11 @@ let obj = {
 // return a.localeCompare(b, 'en', {
 //     sensitivity: 'base'
 // });
+
+function isNumber(ch = '') {
+    let code = ch.charCodeAt(0);
+    if (code >= 48 && code <= 57) {
+        return true;
+    }
+    return false;
+}
