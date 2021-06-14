@@ -66,3 +66,6 @@ function isNumber(ch = '') {
     }
     return false;
 }
+
+// problems / tasks do check the conditions, do not create your own, because the result will be different than expected
+array.forEach(word => word in wantedWordsCounts && wantedWordsCounts[word]++);

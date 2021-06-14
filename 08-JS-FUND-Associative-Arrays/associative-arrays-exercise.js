@@ -110,13 +110,25 @@ function piccolo(input = []) {
 function partyTime(input = []) {
     let partyInd = input.indexOf('PARTY');
     let [guests, came] = [input.slice(0, partyInd), input.slice(partyInd + 1)];
-    let list = {
-        vip: [],
-        regular: []
-    };
+    let list = fillTheList(guests);
+    let sortedList = [...list.vip, ...list.regular];
 
-    for (const guest of guests) {
-        if (!came.includes(guest)) {
+    for (const curr of came) {
+        let ind = sortedList.indexOf(curr);
+        sortedList.splice(ind, 1);
+    }
+
+    let notCome = sortedList.slice();
+    let count = notCome.length;
+    return `${count}\n${notCome.join('\n')}`;
+
+    function fillTheList(guests = []) {
+        let list = {
+            vip: [],
+            regular: []
+        };
+
+        for (const guest of guests) {
             let isVip = isNumber(guest[0]);
             if (isVip) {
                 list.vip.push(guest);
@@ -124,11 +136,8 @@ function partyTime(input = []) {
                 list.regular.push(guest);
             }
         }
+        return list;
     }
-
-    let output = [...list.vip, ...list.regular];
-    let count = output.length;
-    return `${count}\n${output.join('\n')}`;
 
     function isNumber(ch = '') {
         let code = ch.charCodeAt(0);
@@ -139,16 +148,6 @@ function partyTime(input = []) {
     }
 }
 
-// console.log(partyTime(
-//     [
-//         '7IK9Yo0h',
-//         '9NoBUajQ',
-//         'Ce8vwPmE',
-//         'SVQXQCbc',
-//         'tSzE5t0p',
-//         'PARTY',
-//     ]
-// ));
 // console.log(partyTime(
 //     [
 //         '7IK9Yo0h',
@@ -197,35 +196,52 @@ function partyTime(input = []) {
 // ));
 
 function cardGame(input = []) {
-    // {personName}: {PT, PT, PT,… PT}
-    // Where P (2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A) is the power of the card and T (S, H, D, C) is the type. 
-    // The name can contain any ASCII symbol except ':'
-    // A single person cannot have more than one card with the same power and type, if he draws such a card he discards it. 
-    // The people are playing with multiple decks. Each card has a value that is calculated by the power multiplied by the type. 
-    // Powers 2 to 10 have the same value and J to A are 11 to 14. 
-    // Types are mapped to multipliers the following way (S -> 4, H-> 3, D -> 2, C -> 1).
-
-    // Finally print out the total value each player has in his hand in the format:
-    // {personName}: {value}
-
-    let playersData = {};
-    for (const line of input) {
-        let [name, data] = line.split(': ');
-        let totalValue = getTotalValue(data);
-
-        //  first collect all the data for each player, then find total
-
-        // if (playersData.hasOwnProperty(name)) {
-        //     playersData[name] += totalValue;
-        // }
-        return;
+    let playersData = getPlayerData(input);
+    let dataEntries = Object.entries(playersData);
+    let players = {};
+    for (const line of dataEntries) {
+        let [name, dataSet] = [line[0], line[1]];
+        let totalValue = getTotalValue(dataSet);
+        players[name] = Number(totalValue);
     }
-    return;
 
-    function getTotalValue(str = '') {
-        let dataArr = str.split(', ');
+    let playersEntries = Object.entries(players);
+    let output = [];
+    for (const [name, value] of playersEntries) {
+        output.push(`${name}: ${value}`);
+    }
+    return output.join('\n');
+
+    function getPlayerData(input = []) {
+        let obj = {};
+        for (const line of input) {
+            let [name, data] = line.split(': ');
+            data = data.split(', ');
+
+            if (!obj.hasOwnProperty(name)) {
+                obj[name] = new Set();
+            }
+            data.forEach(item => obj[name].add(item));
+        }
+        return obj;
+    }
+
+    function getTotalValue(set) {
+        let dataArr = Array.from(set);
         let power = {
-            '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'J': 11, 'Q': 12, 'K': 13, 'A': 14
+            '2': 2,
+            '3': 3,
+            '4': 4,
+            '5': 5,
+            '6': 6,
+            '7': 7,
+            '8': 8,
+            '9': 9,
+            '10': 10,
+            'J': 11,
+            'Q': 12,
+            'K': 13,
+            'A': 14
         };
         let type = {
             'S': 4,
@@ -234,24 +250,144 @@ function cardGame(input = []) {
             'C': 1
         };
 
-        let values = new Set();
+        let sum = 0;
         for (const line of dataArr) {
-            let [p, t] = line.split('');
-            let currValue = power[p] * type[t];
-            values.add(currValue);
+            let [p, t] = line.length === 3 ? [line.substring(0, 2), line.substring(2)] : line.split('');
+            let currValue = Number(power[p]) * Number(type[t]);
+            sum += currValue;
         }
-        let total = Array.from(values).reduce((a, c) => a + c);
-        return total;
+        return sum;
     }
 }
 
-console.log(cardGame(
-    [
-        'Peter: 2C, 4H, 9H, AS, QS',
-        'Tomas: 3H, 10S, JC, KD, 5S, 10S',
-        'Andrea: QH, QC, QS, QD',
-        'Tomas: 6H, 7S, KC, KD, 5S, 10C',
-        'Andrea: QH, QC, JS, JD, JC',
-        'Peter: JD, JD, JD, JD, JD, JD'
-    ]
-));
+// console.log(cardGame(
+//     [
+//         'Peter: 2C, 4H, 9H, AS, QS',
+//         'Tomas: 3H, 10S, JC, KD, 5S, 10S',
+//         'Andrea: QH, QC, QS, QD',
+//         'Tomas: 6H, 7S, KC, KD, 5S, 10C',
+//         'Andrea: QH, QC, JS, JD, JC',
+//         'Peter: JD, JD, JD, JD, JD, JD'
+//     ]
+// ));
+
+function travelTime(input = []) {
+    let destinations = {};
+
+    for (const line of input) {
+        let [country, town, travelCost] = line.split(' > ');
+        travelCost = Number(travelCost);
+        if (!destinations.hasOwnProperty(country)) {
+            destinations[country] = {};
+            destinations[country][town] = travelCost;
+        } else if (!destinations[country].hasOwnProperty(town)) {
+            destinations[country][town] = travelCost;
+        }
+        let oldCost = destinations[country][town];
+        if (oldCost > travelCost) {
+            destinations[country][town] = travelCost;
+        }
+    }
+
+    let countries = Object.keys(destinations).sort((a, b) => a.localeCompare(b));
+    let output = [];
+    for (const country of countries) {
+        let towns = destinations[country];
+        let entries = Object.entries(towns).sort((a, b) => a[1] - b[1]);
+        let townsStrings = entries.map(x => `${x[0]} -> ${x[1]}`);
+        output.push(`${country} -> ${townsStrings.join(' ')}`);
+    }
+    return output.join('\n');
+}
+
+// console.log(travelTime(
+//     [
+//         "Bulgaria > Sofia > 500",
+//         "Bulgaria > Sopot > 800",
+//         "France > Paris > 2000",
+//         "Albania > Tirana > 1000",
+//         "Bulgaria > Sofia > 200"
+//     ]
+// ));
+
+function companyUsers(input = []) {
+    let data = {};
+    for (const line of input) {
+        let [companyName, employeeId] = line.split(' -> ');
+        if (!data.hasOwnProperty(companyName)) {
+            data[companyName] = new Set();
+        }
+        data[companyName].add(employeeId);
+    }
+
+    let companies = Object.entries(data).sort((a, b) => a[0].localeCompare(b[0]));
+    return getOutput(companies);
+
+    function getOutput(companies) {
+        let output = [];
+        for (const line of companies) {
+            let [company, employees] = [line[0], line[1]];
+            let employeesArr = Array.from(employees).map(x => `-- ${x}`);
+            output.push(`${company}`);
+            output.push(...employeesArr);
+        }
+        return output.join('\n');
+    }
+}
+
+// console.log(companyUsers(
+//     [
+//         'SoftUni -> AA12345',
+//         'SoftUni -> BB12345',
+//         'Microsoft -> CC12345',
+//         'HP -> BB12345'
+//     ]
+// ));
+// console.log(companyUsers(
+//     [
+//         'SoftUni -> AA12345',
+//         'SoftUni -> CC12344',
+//         'Lenovo -> XX23456',
+//         'SoftUni -> AA12345',
+//         'Movement -> DD11111'
+//     ]
+// ));
+
+function aMinerTask(input = []) {
+    let stock = {};
+    for (let i = 0; i < input.length; i += 2) {
+        let resource = input[i];
+        let qty = Number(input[i + 1]);
+
+        if (!stock.hasOwnProperty(resource)) {
+            stock[resource] = 0;
+        }
+        stock[resource] += qty;
+    }
+
+    let entries = Object.entries(stock).map(x => `${x[0]} -> ${x[1]}`);
+    return entries.join('\n');
+}
+
+// console.log(aMinerTask(
+//     [
+//         'Gold',
+//         '155',
+//         'Silver',
+//         '10',
+//         'Copper',
+//         '17'
+//     ]
+// ));
+// console.log(aMinerTask(
+//     [
+//         'gold',
+//         '155',
+//         'silver',
+//         '10',
+//         'copper',
+//         '17',
+//         'gold',
+//         '15'
+//     ]
+// ));
