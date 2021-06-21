@@ -1,0 +1,14 @@
+{
+    "people": [
+        {
+            "name": "Pesho",
+            "age": 18,
+            "height": 190
+        },
+        {
+            "name": "Pesho",
+            "age": 18,
+            "height": 190
+        }
+    ]
+}

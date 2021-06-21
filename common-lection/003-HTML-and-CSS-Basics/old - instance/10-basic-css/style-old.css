@@ -1,0 +1,54 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+p {
+    color: purple;
+    font-size: 24px;
+}
+
+h1 {
+    color: aquamarine;
+}
+
+.quoted-text {
+    font-style: italic;
+    font-size: 18px;
+    color: gray;
+}
+
+#special-quote {
+    background-color: green;
+}
+
+h1 :first-child {
+    color: red;
+}
+
+.navigation li {
+    display: inline;
+    width: 100px;
+    list-style: none;
+}
+
+.navigation a {
+    text-decoration: none;
+    color: whitesmoke;
+    background-color: tomato;
+    padding: 5px 10px;
+    border-radius: 10px;
+    margin: 3px;
+    border: 1px solid tomato;
+}
+
+.navigation a:hover {
+    /* text-decoration: underline; */
+    background-color: transparent;
+    color: tomato;
+    transform: scale(1.1);
+}
+
+.slogan {
+    font-weight: bold;
+    /* display: block; */
+}

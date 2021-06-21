@@ -1,0 +1,24 @@
+p {
+    color: darkviolet;
+}
+
+span {
+    font-weight: bold;
+    border: darkcyan dotted;
+}
+.main-view {
+    vertical-align: top;
+    display: inline-block; width: 33%;
+}
+h1 {
+    text-align: center;
+    display: inline;
+    color: blue;
+}
+img {
+    display: inline-block; width: 90%;
+}
+
+li {
+    border: solid yellow;
+}
