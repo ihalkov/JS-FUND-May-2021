@@ -35,7 +35,6 @@ function rounding(num, precision) {
 
 function division(input) {
     let num = Number(input);
-
     if (num % 10 === 0) {
         return 'The number is divisible by 10';
     } else if (num % 7 === 0) {
@@ -90,11 +89,7 @@ function vacation(groupCount, type, day) {
 function leapYear(input) {
     let year = Number(input);
     let check = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-
-    if (check) {
-        return 'yes';
-    }
-    return 'no';
+    return check ? 'yes' : 'no';
 }
 
 function printAndSum(num1, num2) {
@@ -122,10 +117,10 @@ function triangleOfNumbers(input) {
 function multiplicationTable(input) {
     let num = Number(input);
     let output = [];
-
     for (let i = 1; i <= 10; i++) {
-        let currResult = num * i;
-        output.push(`${num} X ${i} = ${currResult}`)
+        output.push(`${num} X ${i} = ${num * i}`)
     }
     return output.join('\n');
 }
+
+// console.log(multiplicationTable(7));
