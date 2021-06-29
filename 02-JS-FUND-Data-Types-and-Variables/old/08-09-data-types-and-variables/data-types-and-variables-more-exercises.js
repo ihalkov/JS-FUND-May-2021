@@ -38,25 +38,17 @@ function digitsWithWords(word) {
 }
 
 function primeNumberChecker(num) {
-    let result = "";
-
     for (let i = 2; i <= Math.sqrt(num); i++) {
-        isNotPrime = false;
-
         if (num % i === 0) {
-            result = isNotPrime;
-            break;
-        } else {
-            isNotPrime = true;
-            result = isNotPrime;
+            return false;
         }
     }
-    console.log(result);
+    return true;
 }
 
-// primeNumberChecker(7);
-// primeNumberChecker(8);
-// primeNumberChecker(81);
+// console.log(primeNumberChecker(7));
+// console.log(primeNumberChecker(8));
+// console.log(primeNumberChecker(81));
 
 function cone(r, h) {
     let radius = r;

@@ -17,13 +17,11 @@ function printNumbers(number) {
 
 function checkGrade(grade) {
     if (grade) {
-        console.log("Excellent");
-    } else {
-        console.log("Not Excellent");
+        return "Excellent";
     }
+    return "Not Excellent";
 }
-
-//  checkGrade(5.5);
+// console.log(checkGrade(5.5));
 
 // F10 step over (gives next step, but not goes in)
 // F11 step into (goes in, deeply)
@@ -72,20 +70,21 @@ function sumOfOddNumbers(number) {
     let sum = 0;
     let counter = 0;
     let currentNumber = 1;
+    let output = [];
 
     while (counter < number) {
         if (currentNumber % 2 !== 0) {
-            console.log(currentNumber);
-
+            output.push(currentNumber);
             sum += currentNumber;
         }
         counter++;
         currentNumber++;
     }
-    console.log(`Sum: ${sum}`);
+    output.push(`Sum: ${sum}`);
+    return output.join('\n');
 }
 
-sumOfOddNumbers(10);
+// sumOfOddNumbers(10);
 
 // don't use copy paste (can make the same mistake multiplied)
 //  write everything manually
@@ -94,9 +93,11 @@ sumOfOddNumbers(10);
 // output += ${i}
 
 function triangle(number) {
+    let output = [];
     for (let i = 0; i <= number; i++) {
-        console.log(`${i}`.repeat(i));
+        output.push(`${i}`.repeat(i));
     }
+    return output.push('\n');
 }
 
 // Remove trailing zeroes, if any (you can use parseFloat())
@@ -120,6 +121,16 @@ function nextDay(year, month, day) {
 
 // nextDay(2016, 9, 30);
 
+
+function getDate(year, month, day) {
+    let dt = new Date(year, month, day);
+    let y = dt.getFullYear();
+    let m = dt.getMonth();
+    let d = dt.getDate();
+    return `${d}-${m}-${y}`;
+}
+
+// console.log(getDate(1991, 7, 7));
 
 function nextDay2(year, month, day) {
     // month is always -1 from user to PC
@@ -170,7 +181,7 @@ function distanceBetweenPoints(x1, y1, x2, y2) {
 
     // distance is "c"
     let distance = Math.sqrt((a * a) + (b * b));
-    console.log(distance);
+    return distance;
 }
 
 // distanceBetweenPoints(2, 4, 5, 0);

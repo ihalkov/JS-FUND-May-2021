@@ -1,14 +1,25 @@
+// two ways
 function sumDigits(n) {
-    let num = parseInt(n);
+    let num = Number(n);
     let sum = 0;
     while (num > 0) {
         let currentDigit = num % 10;
-        num = parseInt(num / 10);
+        num = Number(num / 10);
         sum += currentDigit;
     }
-    console.log(sum);
+   return sum;
 }
 
+function sumDigits(input = '') {
+    let sum = 0;
+    input = input.toString();
+    for (let i = 0; i < input.length; i++) {
+        sum += Number(input[i]);
+    }
+    return sum;
+}
+
+// typeOf verification
 function charsToString(ch1, ch2, ch3) {
     let result = "";
 
@@ -18,20 +29,20 @@ function charsToString(ch1, ch2, ch3) {
         ch3 = ch3.toString();
     }
     result = ch1 + ch2 + ch3;
-    console.log(result);
+    return result;
 }
 
-// charsToString(5, "5", 2);
+function charsToString(ch1, ch2, ch3) {
+    return ch1 + ch2 + ch3;
+}
+
+// console.log(charsToString(5, "5", 2));
 
 function townInfo(name, population, area) {
-    let townName = name;
-    let townPopulation = Number(population);
-    let townArea = Number(area);
-
-    let result = `Town ${townName} has population of ${townPopulation} and area ${townArea} square km.`;
-    console.log(result);
+    return `Town ${name} has population of ${population} and area ${area} square km.`;
 }
 
+// typeOf verification
 function townInfoExample(cityName, population, area) {
     let result = "";
     if (typeof cityName === "string" &&
@@ -52,7 +63,6 @@ function townInfoExample(cityName, population, area) {
 }
 
 // solve with typeof checks
-
 function metersToKm(num) {
     let meters = num;
     let kilometers = 0;
