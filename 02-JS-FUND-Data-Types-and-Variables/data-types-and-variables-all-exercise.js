@@ -401,10 +401,9 @@ function calculator(n1, sign, n2) {
             break;
     }
     if (!isNaN(result)) {
-        console.log(result.toFixed(2));
-    } else {
-        console.log(result);
+        return result.toFixed(2);
     }
+    return result;
 }
 
 // calculator("5", "+", "5");

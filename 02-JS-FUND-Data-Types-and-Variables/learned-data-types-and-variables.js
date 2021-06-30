@@ -1,7 +1,8 @@
 // let vs. var
 // local vs. global
 
-// var - variables use function scope - when declared inside a block {} can be accessed from outside the block
+// var - variables use function scope - when declared inside a block {}
+// can be accessed from outside the block
 
 {
     var x = 2;
@@ -9,7 +10,8 @@
 
 console.log(x); // 2
 
-// let - variables use block scope - when declared inside a block {} can NOT be accessed from outside the block
+// let - variables use block scope - when declared inside a block {}
+    // can NOT be accessed from outside the block
 
 {
     let y = 2;
@@ -18,15 +20,19 @@ console.log(x); // 2
 console.log(y); // Error
 
 // Variables Scope
-// The scope of a variable is the region of the program in which it is defined
-// Global Scope - Global variables can be accessed from anywhere in a JS function
+// The scope of a variable is the region of the program
+    // in which it is defined
+// Global Scope - Global variables can be accessed from anywhere
+    // in a JS function
 
-// Seven primitive: Boolean, Null, Undefined, Number, String, Symbol, BigInt
+// Seven primitive: 
+    // Boolean, Null, Undefined, Number, String, Symbol, BigInt
 
-// dynamic typing - variables in JS are not directly assoc. with any particular value type
+// dynamic typing - variables in JS are not directly assoc.
+    // with any particular value type
 
 // Strings are immutable
-// interpolation - ${} embedded expressions
+    // interpolation - ${} embedded expressions
 
 // undefined and null (non-existent and empty)
 // Undefined and Null are equal in value but different in type:
@@ -53,8 +59,8 @@ console.log(y); // Error
 
 // Data types in JS
 // Primitive: numbers, strings, boolean, null, undefined
-// Composite/Non-Primitive: Objects, Arrays
 // Symbol, BigInt
+// Composite/Non-Primitive: Objects, Arrays
 // literal means how to write some type and the variable understand the type
 // in the memory they are represented by different way
 // var can be used out of block scope
@@ -63,7 +69,7 @@ console.log(y); // Error
 // name = "Pesho";
 // console.log(name);
 // it's very bad practice
-// all the time we need a scope, some function and declare variables in it
+// all the time we need a scope, some function and to declare variables in it
 
 // variables with "_" is private variable
 
@@ -378,5 +384,14 @@ if (ch1 === ch1.toLowerCase()) {}
 if (ch1.charCodeAt(0) >= 60 &&
     ch1.charCodeAt(0) <= 90) {
 
+}
+
+function primeNumberChecker(num) {
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num % i === 0) {
+            return false;
+        }
+    }
+    return true;
 }
 

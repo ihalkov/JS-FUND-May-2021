@@ -63,3 +63,88 @@ function distanceBetweenPoints(x1, y1, x2, y2) {
 // distanceBetweenPoints(2, 4, 5, 0);
 // distanceBetweenPoints(2.34, 15.66, -13.55, -2.9985);
 
+// let vs. var
+// local vs. global
+
+// var - variables use function scope - when declared inside a block {}
+// can be accessed from outside the block
+
+{
+    var x = 2;
+}
+
+console.log(x); // 2
+
+// let - variables use block scope - when declared inside a block {}
+    // can NOT be accessed from outside the block
+
+{
+    let y = 2;
+}
+
+console.log(y); // Error
+
+// Variables Scope
+// The scope of a variable is the region of the program
+    // in which it is defined
+// Global Scope - Global variables can be accessed from anywhere
+    // in a JS function
+
+// Seven primitive: 
+    // Boolean, Null, Undefined, Number, String, Symbol, BigInt
+
+// dynamic typing - variables in JS are not directly assoc.
+    // with any particular value type
+
+// Strings are immutable
+    // interpolation - ${} embedded expressions
+
+// undefined and null (non-existent and empty)
+// Undefined and Null are equal in value but different in type:
+
+// Summary
+// There are 7 data types in JavaScript: Number, String, Symbol, Null, Undefined, Object, Boolean
+// let has block scope, var has function scope
+// With typeof we can receive the type of a variable
+// Null is "nothing",  undefined exists, but is empty
+
+// JS don't have numeric types
+// Arrays and Objects
+// Typeof operator
+// data types Example: I have 5 apples in the bag.
+// we know as humans that 5 is number
+// I like how the number 8 is looking
+// we know that 8 is just the symbol not the number, but pc don't
+
+// in JS the variable don't have type
+// we can put number, later re-assign and put string, etc.
+// variable is just container for information
+// ECMA Script 5
+// ecma-262
+
+// Data types in JS
+// Primitive: numbers, strings, boolean, null, undefined
+// Symbol, BigInt
+// Composite/Non-Primitive: Objects, Arrays
+// literal means how to write some type and the variable understand the type
+// in the memory they are represented by different way
+// var can be used out of block scope
+// let can be inside block scope
+// we can even use undeclared variables in JS
+// name = "Pesho";
+// console.log(name);
+// it's very bad practice
+// all the time we need a scope, some function and to declare variables in it
+
+// variables with "_" is private variable
+
+// Sting used to represent textual data
+// each symbol occupies a position in the String
+// the first element is at position 0
+// Strings in JS are immutable, we can't modify it
+// so we can't say change the first symbol with another
+// let name = "Pesho";
+// name[0] = "D";
+// console.log(name); will be still Pesho
+// we can change but with replace and in the memory will
+
