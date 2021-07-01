@@ -102,9 +102,7 @@ console.log(y); // Error
 // matchWord === secondWord ? console.log("Matched") : console.log("Not Matched");
 // use three operands
 
-// typeOf NaN;
-// number
-// + "20" is a number
+// typeOf NaN; is a number
 
 // 1000n typeOf 1000n "bigint"
 
@@ -114,10 +112,10 @@ console.log(y); // Error
 // bigIntMaxSqr = bigIntMax * bigIntMax;
 // console.log(bigIntMaxSqr); 81129638414606663681390495662081n
 
-// function returnTypeOfNumber(sum) {
-//     let number = Number(sum);
-//     return sum % 1 === 0 ? "Integer" : "Float";
-// }
+function returnTypeOfNumber(sum) {
+    let number = Number(sum);
+    return sum % 1 === 0 ? "Integer" : "Float";
+}
 
 // Boolean
 // true and false
@@ -184,9 +182,9 @@ console.log(y); // Error
 
 
 // interpolation transferring on new line
-// console.log(`${numberOfCenturies} centuries = ${years} `
-//     + `years = ${days} days = ${hours} hours`
-//         + ` = ${minutes} minutes`);
+console.log(`${numberOfCenturies} centuries = ${years} `
+    + `years = ${days} days = ${hours} hours`
+        + ` = ${minutes} minutes`);
 
 // Use parseInt() while dividing to get only integer numbers.
 // function calcSumOfDigits(num) {

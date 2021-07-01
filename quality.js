@@ -123,9 +123,9 @@ console.log(y); // Error
 // ecma-262
 
 // Data types in JS
-// Primitive: numbers, strings, boolean, null, undefined
-// Symbol, BigInt
-// Composite/Non-Primitive: Objects, Arrays
+    // Primitive: numbers, strings, boolean, null, undefined
+    // Symbol, BigInt
+    // Composite/Non-Primitive: Objects, Arrays
 // literal means how to write some type and the variable understand the type
 // in the memory they are represented by different way
 // var can be used out of block scope
@@ -139,12 +139,115 @@ console.log(y); // Error
 // variables with "_" is private variable
 
 // Sting used to represent textual data
-// each symbol occupies a position in the String
-// the first element is at position 0
-// Strings in JS are immutable, we can't modify it
-// so we can't say change the first symbol with another
-// let name = "Pesho";
-// name[0] = "D";
-// console.log(name); will be still Pesho
-// we can change but with replace and in the memory will
+    // each symbol occupies a position in the String
+    // the first element is at position 0
+    // Strings in JS are immutable, we can't modify it
+    // so we can't say change the first symbol with another
+    // let name = "Pesho";
+    // name[0] = "D";
+    // console.log(name); will be still Pesho
+    // we can change but with replace and in the memory will be
+
+// Two places where we save the variables
+// Stack
+    // our script will use it
+    // in stack are primitive type of variables
+
+// Heap
+    // is in RAM and OS wil use it
+    // Array and Object are referent types
+
+// Interpolation
+// `name: ${name}` - print: name: Pesho
+// name.toLowerCase();
+// name.toUpperCase();
+
+// ternary operator
+    // matchWord === secondWord ? console.log("Matched") : console.log("Not Matched");
+    // use three operands
+
+// The parameters are the aliases for the values that will be passed to the function. The arguments are the actual values.
+    var foo = function( a, b, c ) {}; // a, b, and c are the parameters
+    foo( 1, 2, 3 ); // 1, 2, and 3 are the arguments
+
+// typeOf NaN; is a number
+// 1000n typeOf 1000n "bigint"
+
+// bigIntMaxSqr = bigIntMax * bigIntMax;
+// console.log(bigIntMaxSqr); 81129638414606663681390495662081n
+
+function returnTypeOfNumber(num) {
+    num = Number(num);
+    return num % 1 === 0 ? "Integer" : "Float";
+}
+
+// Boolean
+    // true and false
+    // you can use Boolean() function to find out
+        // if an expression (or a variable) is true:
+    // Boolean(10 > 9) returns true
+    console.log(Boolean(10 > 9)); // true
+    // or even easier
+    // (10 > 9) also returns true
+    // 10 > 9 also returns true
+    // with Boolean() we can convert value and check if they are true or false
+    // here we can separate all values on truthy and falsy values
+    // Boolean([]); Boolean({}); are true
+    // Boolean(""); is false
+
+    // false
+    console.log(Boolean(""));
+    console.log(false == "");
+
+// includes - check if some character exist in string or array
+    // result = result.includes("9"); string includes some character
+    //  if (sum.toString().includes("9"))
+
+// Arrays is a way to collect values
+// Object is a way to collect key.value pairs
+
+// typeof
+    // console.log(typeof ""); // string
+    // console.log(typeof "John"); // string
+    // console.log(typeof "John Doe"); // string
+    // console.log(typeof 0); // number
+
+// typeof() like a function
+    // let n = 5;
+    // if (typeof(n) === 'number') {
+    //     console.log(n); // 5
+    // }
+
+// Undefined
+    // variable has been declared, but not defined yet
+        // let car; value is undefined, type is undefined
+        // let car = undefined;
+
+// Null
+    // Null is "nothing" it's supposed to be something that doesn't exist
+    // The typeof null is an object
+
+// Null and Undefined are falsy values
+    // Undefined and Null are equal in value but different in type:
+    // null !== undefined // true
+    // null == undefined // true
+
+// Boolean(Boolean) - true
+    // Boolean is function and in JS is referent type that's why is true
+
+function stringTest(str) {
+    let strToString = str.toString();
+    // let strToString = str + "";
+
+    console.log(typeof str);
+    console.log(typeof strToString);
+}
+
+// stringTest("5"); // print: string, string
+// stringTest(5); // print: number, string
+
+// interpolation transferring on new line
+console.log(`${numberOfCenturies} centuries = ${years} `
+    + `years = ${days} days = ${hours} hours`
+        + ` = ${minutes} minutes`);
 
