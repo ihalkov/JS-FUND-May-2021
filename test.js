@@ -6,4 +6,3 @@ console.log(Boolean(""));
 console.log(false == "");
 
 console.log(typeof(true) === 'number');
-

@@ -218,8 +218,6 @@ function myFunction() {
 // Function Scope
 // Variables declared Locally (inside a function) have Function Scope.
 
-// code here can NOT use carName
-
 function myFunction() {
     var carName = "Volvo";
     // code here CAN use carName
@@ -259,7 +257,7 @@ function townInfoExample(cityName, population, area) {
     if (typeof cityName === "string" &&
         typeof population === "string" &&
         typeof area === "string") {
-        result = `Town ${cityName} has population of ${population} and area ${area} square km.`;
+        // result = `Town ${cityName} has population of ${population} and area ${area} square km.`;
     } else {
         cityName = cityName.toString();
         population = Number(population);
@@ -267,7 +265,7 @@ function townInfoExample(cityName, population, area) {
         if (isNaN(population) || isNaN(area)) {
             console.log("Invalid input");
         } else {
-            result = `Town ${cityName} has population of ${population} and area ${area} square km.`;
+            // result = `Town ${cityName} has population of ${population} and area ${area} square km.`;
         }
     }
     console.log(result);
@@ -345,8 +343,9 @@ if (sum.toString().includes("9")) {
 }
 
 // finds the last digit of a number
-// or make it string and iterate over it and parse to Number on each iteration
-num % 10
+    num % 10
+// or make it string and iterate over it
+    // and parse to Number on each iteration
 
 // typeOf verification
 if (typeof ch1 !== "string" || typeof ch2 !== "string" || typeof ch3 !== "string") {
@@ -375,8 +374,6 @@ function townInfoExample(cityName, population, area) {
 }
 
 // lowercase check
-// looks like second one is faster because is checking only one character,
-
 if (ch1 === ch1.toLowerCase()) {}
 
 if (ch1.charCodeAt(0) >= 60 &&

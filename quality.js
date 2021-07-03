@@ -222,10 +222,15 @@ function returnTypeOfNumber(num) {
     // variable has been declared, but not defined yet
         // let car; value is undefined, type is undefined
         // let car = undefined;
+        // let undefined = undefined;
+        // don't use undefined as value it's private value for JS
+
 
 // Null
     // Null is "nothing" it's supposed to be something that doesn't exist
     // The typeof null is an object
+    // let empty = null;
+
 
 // Null and Undefined are falsy values
     // Undefined and Null are equal in value but different in type:
@@ -251,3 +256,184 @@ console.log(`${numberOfCenturies} centuries = ${years} `
     + `years = ${days} days = ${hours} hours`
         + ` = ${minutes} minutes`);
 
+
+// use parseInt() while dividing to get only integer numbers
+function calcSumOfDigits(num) {
+    let sum = 0;
+    while (num > 0) {
+        sum += num % 10;
+        num = parseInt(num / 10); // or Math.trunc or Math.floor
+    }
+    return sum;
+}
+
+// Global Scope
+    // Variables declared Globally (outside any function)
+        // have Global Scope.
+
+    var carName = "Volvo";
+
+    // code here can use carName
+
+    function myFunction() {
+        // code here can also use carName
+    }
+
+    // Global variables can be accessed from anywhere in a JS program.
+
+// Function Scope
+    // Variables declared Locally (inside a function) have Function Scope.
+
+    function myFunction() {
+        var carName = "Volvo";
+        // code here CAN use carName
+    }
+    
+    // code here can NOT use carName
+    
+    // Local variables can only be accessed from
+        // inside the function where they are declared.
+
+// JavaScript Block Scope
+    // Variables declared with the var keyword
+        // cannot have Block Scope.
+    
+    // Variables declared inside a block {} can be accessed from outside the block.
+    {
+        var x = 2;
+    }
+    // x CAN be used here
+
+    // Re-declaring Variables
+        // Re-declaring a variable using the var keyword
+            // can impose problems.
+
+        // Re-declaring a variable inside a block
+            // will also redeclare the variable outside the block:
+
+            var x = 10;
+            // Here x is 10
+            {
+                var x = 2;
+                // Here x is 2
+            }
+            // Here x is 2
+
+// typeOf verification
+    if (typeof ch1 !== "string" || typeof ch2 !== "string" || typeof ch3 !== "string") {
+        ch1 = ch1.toString();
+        ch2 = ch2.toString();
+        ch3 = ch3.toString();
+    }
+
+    function townInfoExample(cityName, population, area) {
+        if (typeof cityName === "string" &&
+            typeof population === "string" &&
+            typeof area === "string") {
+        } else {
+            cityName = cityName.toString();
+            population = Number(population);
+            area = Number(area);
+            if (isNaN(population) || isNaN(area)) {
+                return 'Invalid input';
+            }
+        }
+        return `Town ${cityName} has population of ${population} and area ${area} square km.`;
+    }
+
+// lowercase check
+    // 1. Variant
+        if (ch1 === ch1.toLowerCase()) {}
+
+    // 2. Variant
+        if (ch1.charCodeAt(0) >= 60 &&
+            ch1.charCodeAt(0) <= 90) {
+        }
+
+// Modulus / modul
+// 0 % 0 = 0
+
+// Prime Numbers Check / Find
+// slow one
+    function primeNumber(number) {
+        let result = "";
+        for (let i = 2; i < number; i++) {
+            let isNotPrime = false;
+
+            if (number % i === 0) {
+                result = isNotPrime;
+                break;
+            } else {
+                isNotPrime = true;
+                result = isNotPrime;
+            }
+        }
+        console.log(result);
+    }
+
+    // primeNumber(6);
+    // primeNumber(7);
+    // primeNumber(8);
+    // primeNumber(81);
+
+
+// faster
+    function primeNumberChecker(num) {
+        let result = "";
+
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            isNotPrime = false;
+
+            if (num % i === 0) {
+                result = isNotPrime;
+                break;
+            } else {
+                isNotPrime = true;
+                result = isNotPrime;
+            }
+        }
+        console.log(result);
+    }
+
+// faster and clean
+    function primeNumberChecker(num) {
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+function binaryToDecimal(binary) {
+    let binaryNum = binary.toString();
+    let toDecimal = 0;
+
+    function returnDecimal() {
+        let decimal = 0;
+        let power = 0;
+        for (let i = binaryNum.length - 1; i >= 0; i--) {
+            // 00001001 start from last so 10010000 1 * 2^0 + 0 * 2^1 + 0 * 2^2 + 1 * 2^3
+            decimal += parseInt(binaryNum[i]) * Math.pow(2, power);
+            power += 1;
+        }
+        return decimal;
+    }
+    toDecimal = returnDecimal();
+    return toDecimal;
+}
+
+// integer or float
+    num % 1 === 0 ? "Integer" : "Float";
+
+// making number a string and then check if includes something
+    if (sum.toString().includes("9")) {
+        return `${num} Amazing? True`;
+    } else {
+        return `${num} Amazing? False`;
+    }
+
+// finds the last digit of a number
+    // num % 10
+
+    
