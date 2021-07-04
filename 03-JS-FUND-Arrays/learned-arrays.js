@@ -469,3 +469,36 @@ function condenseArrayOfNumbersOtherWay(numbers) {
 // console.log(condenseArrayOfNumbersOtherWay([2, 10, 3]));
 // console.log(condenseArrayOfNumbersOtherWay([5, 0, 4, 1, 2]));
 // console.log(condenseArrayOfNumbersOtherWay([1]));
+
+function addOrSubtractFunctional(data = []) {
+    let resultArray = [];
+    let originalSum = 0;
+    let resultSum = 0;
+
+    data.map((number, index) => {
+        number % 2 === 0 ? number += index : number -= index;
+        resultArray.push(number);
+    });
+
+    console.log(resultArray);
+    console.log(originalSum = data.reduce((a, b) => {
+        a += b;
+        return a;
+    }, 0));
+    console.log(resultSum = resultArray.reduce((a, b) => a + b, 0));
+}
+
+// addOrSubtractFunctional([5, 15, 23, 56, 35]);
+// addOrSubtractFunctional([-5, 11, 3, 0, 2]);
+
+function solve(data = []) {
+    // data. something now we have intellisense
+}
+
+numbers = numbers.filter(num => {
+    if (num >= currentBiggest) {
+        currentBiggest = num;
+        return true;
+    }
+})
+

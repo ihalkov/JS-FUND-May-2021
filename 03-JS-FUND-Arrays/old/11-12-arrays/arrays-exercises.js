@@ -216,6 +216,7 @@ function equalSums(array = []) {
             foundEquals = true;
             break;
         }
+
         function findSum(arr = []) {
             let sum = 0;
             for (let i = 0; i < arr.length; i++) {
@@ -374,67 +375,42 @@ function ladybugs(strArray = []) {
         }
 
         field[ladyBugIndex] = 0;
-        // removeLadybugAtIndex(ladyBugIndex);
-        // ladybugMovement();
 
-        // function ladybugMovement() {
-            if (direction === "right") {
-                let landIndex = ladyBugIndex + flyLength;
-                if (landIndex > field.length - 1) {
-                    continue;
-                }
-                if (isLadybugAtIndex(landIndex) === 1) {
-                    while (isLadybugAtIndex(landIndex) === 1) {
-                        landIndex += flyLength;
-                        if (landIndex > fieldSize - 1) {
-                            break;
-                        }
-                    }
-                }
-                if (landIndex >= 0 && landIndex <= field.length - 1) {
-                    field[landIndex] = 1;
-                }
-                // for (let r = ladyBugIndex; r < fieldSize; r += flyLength) {
-                //     if (isLadybugAtIndex(r) === 1 && (r + flyLength) < fieldSize) {
-                //         continue;
-                //     } else {
-                //         removeLadybugAtIndex(ladyBugIndex);
-                //         if (r !== ladyBugIndex) {
-                //             addLadybugAtIndex(r);
-                //         }
-                //         break;
-                //     }
-                // }
-            } else if (direction === "left") {
-                let landIndex = ladyBugIndex - flyLength;
-                if (landIndex < 0) {
-                    continue;
-                }
-
-                if (isLadybugAtIndex(landIndex) === 1) {
-                    while (isLadybugAtIndex(landIndex) === 1) {
-                        landIndex -= flyLength;
-                        if (landIndex < 0) {
-                            break;
-                        }
-                    }
-                }
-                if (landIndex >= 0 && landIndex <= field.length - 1) {
-                    field[landIndex] = 1;
-                }
-                // for (let l = ladyBugIndex; l >= 0; l -= flyLength) {
-                //     if (isLadybugAtIndex(l) === 1 && (l - flyLength) >= 0) {
-                //         continue;
-                //     } else {
-                //         removeLadybugAtIndex(ladyBugIndex);
-                //         if (l !== ladyBugIndex) {
-                //             addLadybugAtIndex(l);
-                //         }
-                //         break;
-                //     }
-                // }
+        if (direction === "right") {
+            let landIndex = ladyBugIndex + flyLength;
+            if (landIndex > field.length - 1) {
+                continue;
             }
-        // }
+            if (isLadybugAtIndex(landIndex) === 1) {
+                while (isLadybugAtIndex(landIndex) === 1) {
+                    landIndex += flyLength;
+                    if (landIndex > fieldSize - 1) {
+                        break;
+                    }
+                }
+            }
+            if (landIndex >= 0 && landIndex <= field.length - 1) {
+                field[landIndex] = 1;
+            }
+        } else if (direction === "left") {
+            let landIndex = ladyBugIndex - flyLength;
+            if (landIndex < 0) {
+                continue;
+            }
+
+            if (isLadybugAtIndex(landIndex) === 1) {
+                while (isLadybugAtIndex(landIndex) === 1) {
+                    landIndex -= flyLength;
+                    if (landIndex < 0) {
+                        break;
+                    }
+                }
+            }
+            if (landIndex >= 0 && landIndex <= field.length - 1) {
+                field[landIndex] = 1;
+            }
+        }
+
         function isLadybugAtIndex(index) {
             if (field[index] === 1) {
                 return 1;
@@ -442,16 +418,6 @@ function ladybugs(strArray = []) {
                 return 0;
             }
         }
-
-        function removeLadybugAtIndex(index) {
-            field[index] = 0;
-        }
-
-        function addLadybugAtIndex(index) {
-            field[index] = 1;
-        }
-
-        
     }
 
     function putLadybugsOnPos() {
@@ -463,6 +429,7 @@ function ladybugs(strArray = []) {
         }
         return field;
     }
+
     function printResult() {
         let output = "";
         for (let i = 0; i < field.length; i++) {

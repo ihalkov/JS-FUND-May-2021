@@ -169,9 +169,6 @@ function condenseArrayOfNumbersOtherWay(numbers) {
 
 // EXERCISE
 function addAndSubtract(input) {
-    //     •	If the number is even - add to its value its index position
-    // •	If the number is odd - subtract to its value its index position
-
     let newSum = 0;
     let oldSum = 0;
 
@@ -206,10 +203,8 @@ function addAndSubtract(input) {
 function commonElements(arr1, arr2) {
     let output = [];
     for (const item1 of arr1) {
-        for (const item2 of arr2) {
-            if (item1 === item2) {
-                output.push(item1);
-            }
+        if (arr2.includes(item1)) {
+            output.push(item1);
         }
     }
     return output.join('\n');
@@ -263,9 +258,10 @@ function arrayRotation(numbers, rotations) {
 
 function maxNumber(input = []) {
     let top = [];
+    let isTop = true;
+
     for (let i = 0; i < input.length; i++) {
         let max = input[i];
-        let isTop = true;
         for (let j = i + 1; j < input.length; j++) {
             let curr = input[j];
             if (max <= curr) {
@@ -277,6 +273,7 @@ function maxNumber(input = []) {
         if (isTop) {
             top.push(max);
         }
+        isTop = true;
     }
     return top.join(' ');
 }
@@ -338,7 +335,6 @@ function maxSeqOfEqualElements(input = []) {
         maxLength += 1;
     }
     return `${symbol} `.repeat(maxLength).trim();
-
 }
 // console.log(maxSeqOfEqualElements([2, 1, 1, 2, 3, 3, 2, 2, 2, 1]));
 // console.log(maxSeqOfEqualElements([1, 1, 1, 2, 3, 1, 3, 3]));
@@ -370,6 +366,56 @@ function magicSum(numbers, sum) {
 //     [1, 2, 3, 4, 5, 6],
 //     6
 // ));
+
+function dungeonestDark(dungeonRooms) {
+    let dungeonRoomsArr = dungeonRooms.toString().split("|");
+    // string split by "|"
+    let health = 100;
+    let coins = 0;
+    let bestRoom = 1;
+    let isAlive = true;
+
+    for (let i = 0; i < dungeonRoomsArr.length; i++) {
+        let [itemMonster, num] = dungeonRoomsArr[i].toString().split(" ");
+        num = Number((num));
+
+        if (itemMonster === "potion") {
+            let maxHealth = 100;
+            let diff = maxHealth - health;
+            if (diff < num) {
+                num = diff;
+            }
+            health += num;
+
+            console.log(`You healed for ${num} hp.`); // check if diff is smaller
+            console.log(`Current health: ${health} hp.`);
+        } else if (itemMonster === "chest") {
+            coins += num;
+            console.log(`You found ${num} coins.`);
+        } else {
+            // monster attack
+            health -= num;
+            if (health > 0) {
+                console.log(`You slayed ${itemMonster}.`);
+            } else {
+                console.log(`You died! Killed by ${itemMonster}.`);
+                console.log(`Best room: ${bestRoom}`);
+                isAlive = false;
+                break;
+            }
+        }
+        bestRoom += 1;
+    }
+    if (isAlive) {
+        console.log(`You've made it!`);
+        console.log(`Coins: ${coins}`);
+        console.log(`Health: ${health}`);
+    }
+}
+
+// dungeonestDark("rat 10|bat 20|potion 10|rat 10|chest 100|boss 70|chest 1000");
+// dungeonestDark("cat 10|potion 30|orc 10|chest 10|snake 25|chest 110");
+
 
 // position
 // fly length
@@ -405,7 +451,6 @@ function ladybugs(input = []) {
         arr.fill(0);
 
         for (let i = 0; i < fieldSize; i++) {
-            // let currInd = indexes.shift();
             if (indexes.includes(i)) {
                 arr[i] = 1;
             }
@@ -477,25 +522,26 @@ function printNthElem(strArray = []) {
     for (let i = 0; i < strArray.length - 1; i += step) {
         output += strArray[i] + " ";
     }
-    console.log(output);
+    return output;
 }
 
-// printNthElem(['5', '20', '31', '4', '20', '2']);
-// printNthElem(['dsa', 'asd', 'test', 'test', '2']);
-// printNthElem(['1', '2', '3', '4', '5', '6']);
+// console.log(printNthElem(['5', '20', '31', '4', '20', '2']));
+// console.log(printNthElem(['dsa', 'asd', 'test', 'test', '2']));
+// console.log(printNthElem(['1', '2', '3', '4', '5', '6']));
 
 function addAndRemove(commands = []) {
     let numbers = [];
     let initialNumber = 1;
-    let index = 0;
-    while (index < commands.length) {
-        let currentCommand = commands[index];
-        if (currentCommand === "add") {
+    let ind = 0;
+    let commandsLength = commands.length;
+    while (ind < commandsLength) {
+        let curr = commands[ind];
+        if (curr === "add") {
             numbers.push(initialNumber);
-        } else if (currentCommand === "remove") {
+        } else if (curr === "remove") {
             numbers.pop();
         }
-        index++;
+        ind++;
         initialNumber += 1;
     }
     print();
@@ -503,26 +549,26 @@ function addAndRemove(commands = []) {
     function print() {
         let output = "";
         if (numbers.length === 0) {
-            output = "Empty";
+            return "Empty";
         }
         for (const number of numbers) {
             output += number + " ";
         }
-        console.log(output);
+        return output;
     }
 }
 
-// addAndRemove(['add', 'add', 'add', 'add']);
-// addAndRemove(['add', 'add', 'remove', 'add', 'add']);
-// addAndRemove(['remove', 'remove', 'remove']);
+// console.log(addAndRemove(['add', 'add', 'add', 'add']));
+// console.log(addAndRemove(['add', 'add', 'remove', 'add', 'add']));
+// console.log(addAndRemove(['remove', 'remove', 'remove']));
 
 function rotateArray(strArr = []) {
     let elements = strArr;
     let length = elements.length;
-    let currentRotation = 1;
+    let curr = 1;
     let rotations = parseInt(elements[length - 1]);
 
-    while (currentRotation <= rotations && isNaN(rotations) === false) {
+    while (curr <= rotations && isNaN(rotations) === false) {
         let lastIndex = length - 2;
         let lastElement = elements[lastIndex];
 
@@ -533,50 +579,49 @@ function rotateArray(strArr = []) {
             }
             elements[i] = elements[i - 1];
         }
-        currentRotation += 1;
+        curr += 1;
     }
     print();
 
     function print() {
         let output = "";
         if (isNaN(rotations)) {
-            output = "Empty";
-        } else {
-            for (let i = 0; i < elements.length - 1; i += 1) {
-                output += elements[i] + " ";
-            }
+            return "Empty";
         }
-        console.log(output);
+        for (let i = 0; i < elements.length - 1; i += 1) {
+            output += elements[i] + " ";
+        }
+        return output;
     }
 }
 
-// rotateArray(['1', '2', '3', '4', '2']);
-// rotateArray(['Banana', 'Orange', 'Coconut', 'Apple', '15']);
-// rotateArray(['remove', 'remove', 'remove']);
+// console.log(rotateArray(['1', '2', '3', '4', '2']));
+// console.log(rotateArray(['Banana', 'Orange', 'Coconut', 'Apple', '15']));
+// console.log(rotateArray(['remove', 'remove', 'remove']));
 
 function rotateArrayDeclarative(arr = []) {
     let elements = arr;
     let rotations = parseInt(elements.pop());
-    let currentRotation = 1;
+    let curr = 1;
 
-    while (currentRotation <= rotations && isNaN(rotations) === false) {
+    while (curr <= rotations && isNaN(rotations) === false) {
         let lastElement = elements.pop();
         elements.unshift(lastElement);
 
-        currentRotation += 1;
+        curr += 1;
     }
     print();
 
     function print() {
         let output = "";
         if (isNaN(rotations)) {
-            output = "Empty";
+            return "Empty";
         } else {
             for (let i = 0; i < elements.length; i += 1) {
                 output += elements[i] + " ";
             }
         }
-        console.log(output);
+        return output;
     }
 }
 
@@ -595,12 +640,12 @@ function nonDecreasingSubSequence(numArr = []) {
             output += number + " ";
         }
     }
-    console.log(output);
+    return output.trim();
 }
 
-// nonDecreasingSubSequence([1, 3, 8, 4, 10, 12, 3, 2, 24]);
-// nonDecreasingSubSequence([1, 2, 3, 4]);
-// nonDecreasingSubSequence([20, 3, 2, 15, 6, 1]);
+// console.log(nonDecreasingSubSequence([1, 3, 8, 4, 10, 12, 3, 2, 24]));
+// console.log(nonDecreasingSubSequence([1, 2, 3, 4]));
+// console.log(nonDecreasingSubSequence([20, 3, 2, 15, 6, 1]));
 
 function nonDecreasingSubSequenceDeclarative(numArr = []) {
     let numbers = numArr;
@@ -614,13 +659,13 @@ function nonDecreasingSubSequenceDeclarative(numArr = []) {
         }
     })
     numbers.forEach(number => output += number + " ");
-    console.log(output);
+    return output;
 }
 
 
-// nonDecreasingSubSequenceDeclarative([1, 3, 8, 4, 10, 12, 3, 2, 24]);
-// nonDecreasingSubSequenceDeclarative([1, 2, 3, 4]);
-// nonDecreasingSubSequenceDeclarative([20, 3, 2, 15, 6, 1]);
+// console.log(nonDecreasingSubSequenceDeclarative([1, 3, 8, 4, 10, 12, 3, 2, 24]));
+// console.log(nonDecreasingSubSequenceDeclarative([1, 2, 3, 4]));
+// console.log(nonDecreasingSubSequenceDeclarative([20, 3, 2, 15, 6, 1]));
 
 function tseamAccount(strArr) {
     let input = strArr;
@@ -629,9 +674,7 @@ function tseamAccount(strArr) {
     let index = 1;
     let currentCommandString = input[index];
     while (currentCommandString !== "Play!") {
-        let cmd = currentCommandString.toString().split(' ');
-        let command = cmd[0];
-        let game = cmd[1];
+        let [command, game] = currentCommandString.toString().split(' ');
 
         if (command === "Install") {
             install(listOfGames);
