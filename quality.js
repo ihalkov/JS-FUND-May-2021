@@ -436,4 +436,69 @@ function binaryToDecimal(binary) {
 // finds the last digit of a number
     // num % 10
 
-    
+// object instead of if else statement
+function shoppingList(input = []) {
+    let list = input.shift().split('!');
+
+    for (const line of input) {
+        if (line === 'Go Shopping!') {
+            break;
+        }
+        let data = line.split(' ');
+        let command = data[0];
+        let item = data[1];
+
+        let obj = {
+            'Urgent': function (list, item) {
+                if (!list.includes(item)) {
+                    list.unshift(item)
+                }
+                return list;
+            },
+            'Unnecessary': function (list, item) {
+                if ((ind = list.indexOf(item)) !== -1) {
+                    list.splice(ind, 1);
+                }
+                return list;
+            },
+            'Correct': function (list, item) {
+                let newItem = data[2];
+                if ((ind = list.indexOf(item)) !== -1) {
+                    list[ind] = newItem;
+                }
+                return list;
+            },
+            'Rearrange': function (list, item) {
+                if ((ind = list.indexOf(item)) !== -1) {
+                    list.splice(ind, 1);
+                    list.push(item);
+                }
+                return list;
+            },
+        }
+
+        list = obj[command](list, item);
+    }
+    return list.join(', ');
+}
+
+
+// console.log(shoppingList(
+//     [
+//         'Tomatoes!Potatoes!Bread',
+//         'Unnecessary Milk',
+//         'Urgent Tomatoes',
+//         'Go Shopping!'
+//     ]
+// ));
+// console.log(shoppingList(
+//     [
+//         'Milk!Pepper!Salt!Water!Banana',
+//         'Urgent Salt',
+//         'Unnecessary Grapes ',
+//         'Correct Pepper Onion',
+//         'Rearrange Grapes',
+//         'Correct Tomatoes Potatoes',
+//         'Go Shopping!'
+//     ]
+// ));

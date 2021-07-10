@@ -1,18 +1,17 @@
+// arrays
+    // collection of variables in one place
+    // array is sequence of elements
+    // 0,1,2,3,4 indexes
+    // students[]
+    // multiple values in one variable
+    // elements begin at 0 to length - 1
+    // arrays can have variable size (C#/Java can't resize, have to make new array)
+    // in programming we always know how many parameters we have
+    // let numbers = [1, 2, 3, 4, 5];
+    // let names = []; (literal for arrays)
+
 // array iteration
-//  for-in and for-of loops
-
-// collection of variables in one place
-
-// in programming we always know how many parameters we have
-// array is sequence of elements
-// 0,1,2,3,4 indexes
-// students[]
-// multiple values in one variable
-// elements begin at 0 to length - 1
-// arrays can have variable size (C#/Java can't resize, have to make new array)
-
-// let numbers = [1, 2, 3, 4, 5];
-// let names = []; (literal for arrays)
+    //  for-in and for-of loops
 
 function solve2(input) {
     let names = ["Pesho", "Gosho"];
@@ -34,51 +33,48 @@ function solve2(input) {
 // input.pop() (removes the last element of array)
 
 // Parse means taking string and convert to another data
-// 80 to 120 cols
+// 80 to 120 cols for displaying code on one row
 
+function dayOfWeek(num) {
+    let days = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+    ];
 
-// function dayOfWeek(num) {
-//     let days = [
-//         'Monday',
-//         'Tuesday',
-//         'Wednesday',
-//         'Thursday',
-//         'Friday',
-//         'Saturday',
-//         'Sunday'
-//     ];
-
-//     if (1 <= num && num <= 7) {
-//         console.log(days[num - 1]);
-//         return; that's smart
-//     }
-//         console.log("Invalid day!");
-// }
+    if (1 <= num && num <= 7) {
+        return days[num - 1];
+    }
+        return "Invalid day!";
+}
 
 // Array of different types
-// Array holding numbers
-// Array holding strings
+    // Array holding numbers
+    // Array holding strings
 
-// Array holding mixed data
-// let mixedArray =
-//     [20, new Date(), 'hello', {x: 5, y: 8}];
-// better not
+    // Array holding mixed data
+        let mixedArray = [20, new Date(), 'hello', {x: 5, y: 8}];
+        // better not
 
-// Arrays better to be with one type data
+    // Arrays better to be with one type data
 
 // Replace an element value
-// let arr = [10, 20, 30];
-// arr[0] = 5; // Elements can be modified
-// console.log(arr); // [5, 20, 30]
+    let arr = [10, 20, 30];
+    arr[0] = 5; // Elements can be modified
+    console.log(arr); // [5, 20, 30]
 
 // Check if the array contains the specified element:
-// console.log(arr.includes(20)); // false
-// console.log(arr.includes(0)); // true
+    console.log(arr.includes(20)); // false
+    console.log(arr.includes(0)); // true
 
 function solve3(grades) {
     const names = ['Pesho', 'Gosho', 'Stamat'];
 
-    names[10] = 'Peter'; // will create 10th element and will do so many empty elements
+    names[10] = 'Peter'; // will create 10th element and will put empty elements to fill the cells created
     names[-5] = 'se taq';
     console.log(names);
     console.log(names.length);
@@ -87,44 +83,47 @@ function solve3(grades) {
 // solve3();
 
 // arr.push(); put element at the end of array
+// console.log(resultArr.join(' - ')); (join the elements of the array with " - ")
 
-// better create new array for better readability is good practice
+// create new array for better readability is good practice
 
 // for-in and for-off are used for iterations around arrays
+    // For-of Loop
+        // Iterates through all elements in a collection
+        // cannot access the current index
 
-// For-of Loop
-// Iterates through all elements in a collection
-// cannot access the current index
+        for (const el of collection) {
+            // Process the value here
+        }
 
-// for (const el of collection) {
-//     // Process the value here
-// }
+    // For-in Loop
+        // the slowest
+        // iterates through all indexes in a collection
+        // is useful in objects
+        for (const key in object) {
+            if (object.hasOwnProperty(key)) {
+                const element = object[key];
+            }
+        }
+        // can be braked
 
-// For-in Loop
-// iterates through all indexes in a collection
-// is useful in objects
-
-// for (const key in object) {
-//     if (object.hasOwnProperty(key)) {
-//         const element = object[key];
-//     }
-// }
-
-// can be braked
-// const is for protection just to not change the array
-
+    // const is for protection just to not change the array
+    
 function printResult() {
     let result = "";
-    // for (let i = 0; i < arrayOfStrings.length; i++) {
-    //     result += arrayOfStrings[i] + " ";
-    // }
-    // for (let string of arrayOfStrings) {
-    //     result += string + " ";
-    // }
+    // normal for loop
+    for (let i = 0; i < arrayOfStrings.length; i++) {
+        result += arrayOfStrings[i] + " ";
+    }
+    // for-of
+    for (let string of arrayOfStrings) {
+        result += string + " ";
+    }
+    // for-in
     for (const index in arrayOfStrings) {
         result += arrayOfStrings[index] + " ";
     }
-    console.log(result);
+    return result;
 }
 
 //  HEAP
@@ -141,15 +140,16 @@ function solve(data = []) {
 
 // imperative is when you write logic
 // declarative is when you tell what to do and
-// don't think how is done the problem
+    // don't think how is done the problem
 
 // For Arrays methods to use
-// .map() (does one type operations to every element of array)
-// map have second parameter index and increment it automatically
-// .reduce() reduce all the values to one
-// for-of
+    // .map() (does one type operations to every element of array)
+    // map have second parameter index and increment it automatically
 
-// .foreach() have no breaks and can fill the memory
+    // .reduce() reduce all the values to one
+    // for-of
+    // .foreach() have no breaks and can fill the memory
+        // can use return to break a foreach
 
 function commonElemIncludes(arr1 = [], arr2 = []) {
     for (let i = 0; i < arr1.length; i++) {
@@ -161,15 +161,15 @@ function commonElemIncludes(arr1 = [], arr2 = []) {
     }
 }
 
+// we can chain arrays a lot
 function solve5(arrayOfNums = []) {
     let output = arrayOfNums
         .map(Number)
         .map(number => number + 2);
 
-    console.log(output, typeof output);
+    return output, typeof output;
 }
-// can chain arrays a lot
-// solve5([1, 2, 3, 4, 5, 6]);
+console.log(solve5([1, 2, 3, 4, 5, 6])); //object
 
 function commonElemForEach(arr1 = [], arr2 = []) {
     arr1.forEach((elem) => {
@@ -184,7 +184,6 @@ function commonElemForEach(arr1 = [], arr2 = []) {
 // in programming 0 is even and odd number
 // in math is only even
 
-// console.log(resultArr.join(' - ')); (join the elements of the array with " - ")
 
 function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
     let resultArr = [];
@@ -197,18 +196,18 @@ function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
     console.log(resultArr.join(" - "));
 }
 
+console.log(mergeArraysDeclarativeWay(['1', '2', '3'], ['4', '3', '5'])); // 5 - 23 - 8
+
 // .slice() and .splice()
-// isNan() bool return
-
-
-
-// with .shift and .push we change the array
-// slice is good brother
-// 1st use slice, then in that copy of the array use splice
-// .slice() return new array
-// .splice() make change to arrays
+    // slice is good brother
+    // 1st use slice, then in that copy of the array use splice
+    // .slice() return new array
+    // .splice() make change to arrays
 
 // ladybugIndexes.splice(index, 1); remove element at particular position
+
+// isNan() bool return
+// with .shift and .push we change the array
 
 // if have to many repeating code and don't know why... is wrong
 // if you have repeating checks probably you're wrong
@@ -216,7 +215,6 @@ function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
 // then do it yourself again
 
 // .unshift() put new element on first position
-
 // let filtered = [12, 5, 8, 130, 44].filter(value => value >= 10);
 // console.log(filtered); // 12, 130, 44
 
@@ -502,3 +500,61 @@ numbers = numbers.filter(num => {
     }
 })
 
+function createMatrix(n) {
+    let matrix = [];
+    for (let row = 0; row < n; row++) {
+        let currentArray = [];
+        for (let col = 0; col < n; col++) {
+            currentArray.push(row + col);
+        }
+        matrix.push(currentArray);
+    }
+
+    print2DMatrix(matrix);
+
+    function print2DMatrix(matrix = []) {
+        for (let row = 0; row < matrix.length; row++) {
+            let outputRow = "";
+            for (let col = 0; col < matrix[row].length; col++) {
+                outputRow += matrix[row][col];
+            }
+            console.log(outputRow);
+        }
+    }
+}
+
+// filter everything different than '' empty string
+let [rows, cols] = arr.split(' ')
+                            .filter(x => x != '')
+                            .map(Number);
+
+function spiralMatrix([arr]) {
+    printMatrix(getMatrix(arr));
+
+    function getMatrix(arr) {
+        let [rows, cols] = arr.split(' ')
+                            .filter(x => x != '')
+                            .map(Number);
+        let [count, maxCount, minRow, minCol, maxRow, maxCol] = [0, rows * cols, 0, 0, rows-1, cols-1];
+        let matrix = [];
+        for (let r = 0; r < rows; r++) matrix[r] = [];
+        while (count < maxCount) {
+            for (let c = minCol; c <= maxCol && count < maxCount; c++)	matrix[minRow][c] = ++count;
+            minRow++;
+            for (let r = minRow; r <= maxRow && count < maxCount; r++)	matrix[r][maxCol] = ++count;
+            maxCol--;
+            for (let c = maxCol; c >= minCol && count < maxCount; c--)	matrix[maxRow][c] = ++count;
+            maxRow--;
+            for (let r = maxRow; r >= minRow && count < maxCount; r--)	matrix[r][minCol] = ++count;
+            minCol++;
+        }
+        return matrix;
+    }
+
+    function printMatrix(matrix) {
+        matrix.forEach(row => console.log(row.join(' ')));
+    }
+}
+
+// spiralMatrix(['5 5']);
+// spiralMatrix(['3 3']);

@@ -1,8 +1,12 @@
-console.log(typeof NaN);
-console.log(Boolean(10 > 3));
+function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
+    let resultArr = [];
 
-// false
-console.log(Boolean(""));
-console.log(false == "");
+    strArrOne.map((element, i) => {
+        i % 2 === 0 ?
+            resultArr.push(Number(element) + Number(strArrTwo[i])) :
+            resultArr.push(element + strArrTwo[i]);
+    });
+    return resultArr.join(" - ");
+}
 
-console.log(typeof(true) === 'number');
+console.log(mergeArraysDeclarativeWay(['1', '2', '3'], ['4', '3', '5']));

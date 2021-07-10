@@ -924,12 +924,8 @@ function diagonalAttack(arr = []) {
     function parseMatrixToNumbers(matrix = []) {
         let newMatrix = [];
         for (let row = 0; row < matrix.length; row++) {
-            let currentRow = matrix[row].split(' ');
-            let numArr = [];
-            for (let col = 0; col < currentRow.length; col++) {
-                numArr.push(Number(currentRow[col]));
-            }
-            newMatrix.push(numArr);
+            let currentRow = matrix[row].split(' ').map(Number);
+            newMatrix.push(currentRow);
         }
         return newMatrix;
     }
