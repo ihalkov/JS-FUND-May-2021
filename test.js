@@ -1,12 +1,14 @@
-function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
-    let resultArr = [];
-
-    strArrOne.map((element, i) => {
-        i % 2 === 0 ?
-            resultArr.push(Number(element) + Number(strArrTwo[i])) :
-            resultArr.push(element + strArrTwo[i]);
-    });
-    return resultArr.join(" - ");
+function simpleCalculatorOptimize2(firstNumber, secondNumber, operationName) {
+    let mathOperations = {
+        'multiply': (a, b) => a * b,
+        'divide': (a, b) => a / b,
+        'add': (a, b) => a + b,
+        'subtract': (a, b) => a - b
+    }
+    return mathOperations[operationName](firstNumber, secondNumber);
 }
 
-console.log(mergeArraysDeclarativeWay(['1', '2', '3'], ['4', '3', '5']));
+// console.log(simpleCalculatorOptimize2(5, 5, 'multiply'));
+// console.log(simpleCalculatorOptimize2(40, 8, 'divide'));
+// console.log(simpleCalculatorOptimize2(12, 19, 'add'));
+// console.log(simpleCalculatorOptimize2(50, 13, 'subtract'));

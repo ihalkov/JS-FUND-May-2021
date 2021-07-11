@@ -225,24 +225,24 @@ let add = function (x, y) {
 console.log(add(10, 20)); // 30
 
 // arrow function
-let addArrow = (x, y) => x + y;
-console.log(addArrow(10, 20));
+    let addArrow = (x, y) => x + y;
+    console.log(addArrow(10, 20));
 
 // numbers.filter()
-function nonDecreasingSubSequenceDeclarative(numArr = []) {
-    let numbers = numArr;
-    let currentBiggest = Number.MIN_SAFE_INTEGER;
-    let output = "";
+    function nonDecreasingSubSequenceDeclarative(numArr = []) {
+        let numbers = numArr;
+        let currentBiggest = Number.MIN_SAFE_INTEGER;
+        let output = "";
 
-    numbers = numbers.filter(number => {
-        if (number >= currentBiggest) {
-            currentBiggest = number;
-            return true;
-        }
-    })
-    numbers.forEach(number => output += number + " ");
-    console.log(output);
-}
+        numbers = numbers.filter(number => {
+            if (number >= currentBiggest) {
+                currentBiggest = number;
+                return true;
+            }
+        });
+        numbers.forEach(number => output += number + " ");
+        return output;
+    }
 
 
 // nonDecreasingSubSequenceDeclarative([1, 3, 8, 4, 10, 12, 3, 2, 24]);
@@ -256,8 +256,8 @@ function nonDecreasingSubSequenceDeclarative(numArr = []) {
 
 
 // Multidimensional Arrays
-// mainly with 2 dimensional. The concept is as simple as working with a simple 1-dimensional array.
-// It is just an array of arrays.
+    // mainly with 2 dimensional. The concept is as simple as working with a simple 1-dimensional array.
+    // It is just an array of arrays.
 
 function print2DMatrix(matrix = []) {
     for (let row = 0; row < matrix.length; row++) {
@@ -265,7 +265,7 @@ function print2DMatrix(matrix = []) {
         for (let col = 0; col < matrix[row].length; col++) {
             outputRow += matrix[row][col];
         }
-        console.log(outputRow);
+        return outputRow;
     }
 }
 
@@ -278,18 +278,7 @@ function createMatrix(n) {
         }
         matrix.push(currentArray);
     }
-
-    print2DMatrix(matrix);
-
-    function print2DMatrix(matrix = []) {
-        for (let row = 0; row < matrix.length; row++) {
-            let outputRow = "";
-            for (let col = 0; col < matrix[row].length; col++) {
-                outputRow += matrix[row][col];
-            }
-            console.log(outputRow);
-        }
-    }
+    return matrix;
 }
 
 function emptyMatrix(rows, cols) {
@@ -314,11 +303,12 @@ function createEmptyRows() {
 }
 
 // assign length of for loop to variable could be a good idea, because we can manipulate it later
-// can find shorter names of the variables, don't re-use declare the same names of the variables inside the function and in global
+// can find shorter names of the variables,
+    // don't re-use declare the same names of the variables inside the function and in global scope
 
 // create matrix and then make all of elements numbers
-// let matrix = matrixRows.map(
-// row => row.split(' ').map(Number));
+    let matrix = matrixRows.map(
+        row => row.split(' ').map(Number));
 
 function createMatrix(rows) {
     let matrix = [];
@@ -366,22 +356,22 @@ function orbit([rows, cols, x, y]) {
 // orbit([3, 3, 2, 2]);
 
 // array with given size filled with zeroes
-// let newArr = new Array(fieldSize).fill(0);
+    let newArr = new Array(fieldSize).fill(0);
 
 // You can add an element to the end of the array:
-let arr = [10, 20, 30];
-arr[arr.length] = 40;
-console.log(arr); // [10, 20, 30, 40]
+    let arr = [10, 20, 30];
+    arr[arr.length] = 40;
+    console.log(arr); // [10, 20, 30, 40]
 
 // Reverse array of strings
 function reverse(arr) {
     for (let i = 0; i < arr.length / 2; i++) {
-        let oldElement = arr[i];
-        let previousIndex = arr.length - 1 - i;
-        arr[i] = arr[previousIndex];
-        arr[previousIndex] = oldElement;
+        let oldEl = arr[i];
+        let prevInd = arr.length - 1 - i;
+        arr[i] = arr[prevInd];
+        arr[prevInd] = oldEl;
     }
-    console.log(arr.join(' '));
+    return arr.join(' ');
 }
 
 function dayOfWeek(num) {
@@ -528,33 +518,135 @@ let [rows, cols] = arr.split(' ')
                             .filter(x => x != '')
                             .map(Number);
 
-function spiralMatrix([arr]) {
-    printMatrix(getMatrix(arr));
+                            function spiralMatrix(input = []) {
+                                return printMatrix(getMatrix(input));
+                            
+                                function getMatrix(arr) {
+                                    let [rows, cols] = arr[0].split(' ').map(Number);
+                                    let [count, maxCount, minRow, minCol, maxRow, maxCol] = [0, rows * cols, 0, 0, rows - 1, cols - 1];
+                            
+                                    let matrix = [];
+                                    for (let r = 0; r < rows; r++) {
+                                        matrix[r] = [];
+                                    }
+                            
+                                    while (count < maxCount) {
+                                        for (let c = minCol; c <= maxCol &&
+                                            count < maxCount; c++) {
+                                            matrix[minRow][c] = ++count;
+                                        }
+                                        minRow++;
+                            
+                                        for (let r = minRow; r <= maxRow &&
+                                            count < maxCount; r++) {
+                                            matrix[r][maxCol] = ++count;
+                                        }
+                                        maxCol--;
+                            
+                                        for (let c = maxCol; c >= minCol &&
+                                            count < maxCount; c--) {
+                                            matrix[maxRow][c] = ++count;
+                                        }
+                                        maxRow--;
+                            
+                                        for (let r = maxRow; r >= minRow &&
+                                            count < maxCount; r--) {
+                                            matrix[r][minCol] = ++count;
+                                        }
+                                        minCol++;
+                                    }
+                                    return matrix;
+                                }
+                            
+                                function printMatrix(matrix) {
+                                    let output = [];
+                                    matrix.forEach(row => output.push(row.join(' ')));
+                                    return output.join('\n');
+                                }
+                            }
+                            
+                            // console.log(spiralMatrix(['5 5']));
+                            // console.log(spiralMatrix(['3 3']));
 
-    function getMatrix(arr) {
-        let [rows, cols] = arr.split(' ')
-                            .filter(x => x != '')
-                            .map(Number);
-        let [count, maxCount, minRow, minCol, maxRow, maxCol] = [0, rows * cols, 0, 0, rows-1, cols-1];
-        let matrix = [];
-        for (let r = 0; r < rows; r++) matrix[r] = [];
-        while (count < maxCount) {
-            for (let c = minCol; c <= maxCol && count < maxCount; c++)	matrix[minRow][c] = ++count;
-            minRow++;
-            for (let r = minRow; r <= maxRow && count < maxCount; r++)	matrix[r][maxCol] = ++count;
-            maxCol--;
-            for (let c = maxCol; c >= minCol && count < maxCount; c--)	matrix[maxRow][c] = ++count;
-            maxRow--;
-            for (let r = maxRow; r >= minRow && count < maxCount; r--)	matrix[r][minCol] = ++count;
-            minCol++;
+function ladybugs(input = []) {
+    let fieldSize = Number(input[0]);
+    let indexes = input[1].split(' ').map(Number);
+
+    let initialField = putBugsInPosition(fieldSize, indexes);
+
+    for (let i = 2; i < input.length; i++) {
+        let line = input[i];
+        initialField = moveBug(line, initialField);
+    }
+    return initialField.join(' ');
+
+    function putBugsInPosition(fieldSize, indexes) {
+        let arr = [];
+        arr.length = fieldSize;
+        arr.fill(0);
+
+        for (let i = 0; i < fieldSize; i++) {
+            // let currInd = indexes.shift();
+            if (indexes.includes(i)) {
+                arr[i] = 1;
+            }
         }
-        return matrix;
+        return arr;
     }
 
-    function printMatrix(matrix) {
-        matrix.forEach(row => console.log(row.join(' ')));
+    function moveBug(line, initialField) {
+        let [firstPosition, command, flyLength] = line.split(' ');
+        firstPosition = Number(firstPosition);
+        flyLength = Number(flyLength);
+
+        // is bug position always with bug
+        let isBug = initialField[firstPosition] === 1;
+        if (!isBug) {
+            return initialField;
+        }
+
+        initialField[firstPosition] = 0;
+
+        let currPosition = firstPosition;
+        while (currPosition >= 0 &&
+            currPosition <= initialField.length - 1) {
+
+            let obj = {
+                'left': currPosition - flyLength,
+                'right': currPosition + flyLength
+            };
+            currPosition = obj[command];
+            if (initialField[currPosition] === 0) {
+                initialField[currPosition] = 1;
+                break;
+            }
+        }
+        return initialField;
     }
 }
 
-// spiralMatrix(['5 5']);
-// spiralMatrix(['3 3']);
+// console.log(ladybugs(
+//     [
+//         3,
+//         '0 1',
+//         '0 right 1',
+//         '2 right 1'
+//     ]
+// ));
+// console.log(ladybugs(
+//     [
+//         3,
+//         '0 1 2',
+//         '0 right 1',
+//         '1 right 1',
+//         '2 right 1'
+//     ]
+// ));
+// console.log(ladybugs(
+//     [
+//         5,
+//         '3',
+//         '3 left 2',
+//         '1 left -2'
+//     ]
+// ));

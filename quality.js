@@ -3,7 +3,37 @@
 
 // don't use the parameter directly, but do make local variable
 // can have two functions with the same name and JS use the last writen in the code
+// 80 to 120 cols for displaying code on one row
 
+// in programming 0 is even and odd number
+// in math is only even
+
+// Format one market line or multiple lines of code
+// Ctrl + K + F
+
+// Format whole document
+// Alt + Shift + F
+
+//  function always is doing only one thing
+//  do put the parameters always
+
+// assign length of for loop to variable could be a good idea, because we can manipulate it later
+// can find shorter names of the variables,
+    // don't re-use declare the same names of the variables inside the function and in global scope
+
+// if have to many repeating code and don't know why... is wrong
+// if you have repeating checks probably you're wrong
+// do the hardest tasks, looking at people's solution
+// then do it yourself again
+
+// imperative is when you write logic
+// declarative is when you tell what to do and
+    // don't think how is done the problem
+
+// Turn on intellisense
+    function solve(data = []) {
+        // data. something now we have intellisense
+    }
 // incrementation inside the condition for loop
     // for (let i = 0; i < arr.length; i++) {
 // incrementation outside the condition while loop
@@ -24,8 +54,10 @@
 // '*'.repeat(5);
 // return string of '*****'
 
-// use parseFloat() to remove trailing zeroes
-    // num = parseFloat(num.toFixed(precision));
+// Parse means taking string and convert to another data
+    // best to use Number() when parsing
+    // use parseFloat() to remove trailing zeroes
+        // num = parseFloat(num.toFixed(precision));
 
 // Ternary operator
 // return check ? "yes" : "no";
@@ -502,3 +534,507 @@ function shoppingList(input = []) {
 //         'Go Shopping!'
 //     ]
 // ));
+
+// ARRAYS
+    // collection of variables in one place
+    // array is sequence of elements
+    // 0,1,2,3,4 indexes
+    // students[]
+    // multiple values in one variable
+    // elements begin at 0 to length - 1
+    // arrays can have variable size (C#/Java can't resize, have to make new array)
+        function solve3(grades) {
+            const names = ['Pesho', 'Gosho', 'Stamat'];
+        
+            names[10] = 'Peter'; // will create 10th element and will put empty elements to fill the cells created
+            names[-5] = 'se taq';
+            console.log(names);
+            console.log(names.length);
+        }
+    // when we add new element new value is added to array (the array is not rewrite)
+    // in programming we always know how many parameters we have
+    // let numbers = [1, 2, 3, 4, 5];
+    // let names = []; (literal for arrays)
+    // create new array for better readability is good practice
+    // we can chain arrays a lot
+        function solve5(arrayOfNums = []) {
+            let output = arrayOfNums
+                .map(Number)
+                .map(number => number + 2);
+
+            return output, typeof output;
+        }
+        console.log(solve5([1, 2, 3, 4, 5, 6])); //object
+
+    // array iteration
+        //  for-in and for-of loops
+        // const is for protection just to not change the array
+            // For-of Loop
+                // Iterates through all elements in a collection
+                // cannot access the current index
+
+                for (const el of collection) {
+                    // Process the value here
+                }
+                
+            // For-in Loop
+                // the slowest
+                // iterates through all indexes in a collection
+                // is useful in objects
+                // can be braked
+                for (const key in object) {
+                    if (object.hasOwnProperty(key)) {
+                        const element = object[key];
+                    }
+                }
+
+    // Arrays better to be with one type data
+        // Array of different types
+            // Array holding numbers
+            // Array holding strings
+
+            // Array holding mixed data
+            let mixedArray = [20, new Date(), 'hello', {x: 5, y: 8}];
+
+    // Replace an element value
+        let arr = [10, 20, 30];
+        arr[0] = 5; // Elements can be modified
+        console.log(arr); // [5, 20, 30]
+
+function solve2(input) {
+    let names = ["Pesho", "Gosho"];
+
+    console.log(names[0]);
+    console.log(names[1]);
+    console.log(names[2]); // undefined
+    // console.log();
+
+    names[2] = "Ivan"; // adding new value to the array
+    // the array is getting resized, bigger ;)
+    console.log(names[2]);
+}
+
+// ARRAYS METHODS
+    // input.shift() (removes the first element of array)
+    // input.pop() (removes the last element of array)
+    // map is method which creates new array
+        // .map() (does one type operations to every element of array)
+        // map have second parameter index and increment it automatically
+    // arr.includes()
+        // Check if the array contains the specified element:
+        console.log(arr.includes(20)); // false
+        console.log(arr.includes(0)); // true
+
+        function commonElemIncludes(arr1 = [], arr2 = []) {
+            for (let i = 0; i < arr1.length; i++) {
+                // for (let j = 0; j < arr2.length; j++) {
+                if (arr2.includes(arr1[i])) {
+                    console.log(arr1[i]);
+                }
+                // }
+            }
+        }
+
+    // arr.push(); put element at the end of array
+    // .reduce() reduce all the values to one
+    // .foreach() have no breaks and can fill the memory
+        // can use return to break a foreach
+    // resultArr.join(' - '); (join the elements of the array with " - ")
+    // .slice() and .splice()
+        // slice is good brother
+        // 1st use slice, then in that copy of the array use splice
+        // .slice() return new array
+        // .splice() make change to arrays
+        // ladybugIndexes.splice(index, 1); remove element at particular position
+    // isNan() bool return
+    // with .shift and .push we change the array
+    // .unshift() put new element on first position
+    // .filter()
+        // let filtered = [12, 5, 8, 130, 44].filter(value => value >= 10);
+        // console.log(filtered); // 12, 130, 44
+        numbers = numbers.filter(num => {
+            if (num >= currBiggest) {
+                currBiggest = num;
+                return true;
+            }
+        });
+
+        // filter everything different than '' empty string
+            let [rows, cols] = arr.split(' ')
+            .filter(x => x != '')
+            .map(Number);
+
+    // array with given size filled with zeroes
+        let newArr = new Array(fieldSize).fill(0);
+
+    // You can add an element to the end of the array:
+        let arr = [10, 20, 30];
+        arr[arr.length] = 40;
+        console.log(arr); // [10, 20, 30, 40]
+
+    function mergeArraysDeclarativeWay(strArrOne = [], strArrTwo = []) {
+        let resultArr = [];
+    
+        strArrOne.map((element, i) => {
+            i % 2 === 0 ?
+                resultArr.push(Number(element) + Number(strArrTwo[i])) :
+                resultArr.push(element + strArrTwo[i]);
+        });
+        console.log(resultArr.join(" - "));
+    }
+    
+    console.log(mergeArraysDeclarativeWay(['1', '2', '3'], ['4', '3', '5'])); // 5 - 23 - 8
+    
+// arrow function
+    let addArrow = (x, y) => x + y;
+    console.log(addArrow(10, 20));
+
+// Multidimensional Arrays
+    // mainly with 2 dimensional. The concept is as simple as working with a simple 1-dimensional array.
+    // It is just an array of arrays.
+
+    function emptyMatrix(rows, cols) {
+        let empty = new Array(rows);
+        for (let row = 0; row < rows; row++) {
+            empty[row] = new Array(cols);
+        }
+        return empty;
+    }
+
+    function print2DMatrix(matrix = []) {
+        for (let row = 0; row < matrix.length; row++) {
+            let outputRow = "";
+            for (let col = 0; col < matrix[row].length; col++) {
+                outputRow += matrix[row][col];
+            }
+            return outputRow;
+        }
+    }
+
+    // if we put new cols out of the length - 1 to the array it automatically goes bigger and its size change
+
+    function createEmptyRows() {
+        for (let r = 0; r < rows; r++) matrix[r] = [];
+    }
+
+    // let matrix = [];
+    // let rows = 10;
+    // for (let r = 0; r < rows; r++) matrix[r] = new Array(r + 1).fill(r + 1);
+    // console.log(matrix);
+
+    // from Orbit problem
+    matrix[r][c] = Math.max(Math.abs(r - starRow), Math.abs(c - starCol)) + 1;
+
+    function swapElements(strArr) {
+        for (let i = 0; i < strArr.length / 2; i++) {
+            let currEl = strArr[i];
+            let backInd = strArr.length - i - 1;
+    
+            strArr[i] = strArr[backInd];
+            strArr[backInd] = currEl;
+        }
+        return strArr;
+    }
+
+
+// Recursion
+function condenseArrayOfNumbers(numbers) {
+    let condensed = [];
+    for (let i = 0; i < numbers.length - 1; i++) {
+        let currEl = numbers[i] + numbers[i + 1];
+        condensed.push(currEl);
+    }
+    if (numbers.length === 1) {
+        return numbers[0];
+    } else {
+        numbers = condensed;
+        return condenseArrayOfNumbers(numbers);
+    }
+}
+
+// console.log(condenseArrayOfNumbers([2, 10, 3]));
+// console.log(condenseArrayOfNumbers([5, 0, 4, 1, 2]));
+// console.log(condenseArrayOfNumbers([1]));
+
+function factorialDivisionRecursion(firstNumber, secondNumber) {
+    let resultOne = factorial(firstNumber);
+    let resultTwo = factorial(secondNumber);
+    
+    let divide = (a, b) => a / b;
+    let resultOfDivision = divide(resultOne, resultTwo);
+    return resultOfDivision.toFixed(2);
+
+    function factorial(num) {
+        if(num === 0) {
+            return 1;
+        }
+        if (num === 1) {
+            return num;
+        }
+
+        return num * factorial(num - 1);
+    }
+}
+
+// console.log(factorialDivisionRecursion(5, 2));
+// console.log(factorialDivisionRecursion(6, 2));
+
+function addOrSubtractFunctional(data = []) {
+    let resultArray = [];
+    let originalSum = 0;
+    let resultSum = 0;
+
+    data.map((number, index) => {
+        number % 2 === 0 ? number += index : number -= index;
+        resultArray.push(number);
+    });
+
+    console.log(resultArray);
+    console.log(originalSum = data.reduce((a, b) => {
+        a += b;
+        return a;
+    }, 0));
+    console.log(resultSum = resultArray.reduce((a, b) => a + b, 0));
+}
+
+// addOrSubtractFunctional([5, 15, 23, 56, 35]);
+// addOrSubtractFunctional([-5, 11, 3, 0, 2]);
+
+function ladybugs(input = []) {
+    let fieldSize = Number(input[0]);
+    let indexes = input[1].split(' ').map(Number);
+
+    let initialField = putBugsInPosition(fieldSize, indexes);
+
+    for (let i = 2; i < input.length; i++) {
+        let line = input[i];
+        initialField = moveBug(line, initialField);
+    }
+    return initialField.join(' ');
+
+    function putBugsInPosition(fieldSize, indexes) {
+        let arr = [];
+        arr.length = fieldSize;
+        arr.fill(0);
+
+        for (let i = 0; i < fieldSize; i++) {
+            // let currInd = indexes.shift();
+            if (indexes.includes(i)) {
+                arr[i] = 1;
+            }
+        }
+        return arr;
+    }
+
+    function moveBug(line, initialField) {
+        let [firstPosition, command, flyLength] = line.split(' ');
+        firstPosition = Number(firstPosition);
+        flyLength = Number(flyLength);
+
+        // is bug position always with bug
+        let isBug = initialField[firstPosition] === 1;
+        if (!isBug) {
+            return initialField;
+        }
+
+        initialField[firstPosition] = 0;
+
+        let currPosition = firstPosition;
+        while (currPosition >= 0 &&
+            currPosition <= initialField.length - 1) {
+
+            let obj = {
+                'left': currPosition - flyLength,
+                'right': currPosition + flyLength
+            };
+            currPosition = obj[command];
+            if (initialField[currPosition] === 0) {
+                initialField[currPosition] = 1;
+                break;
+            }
+        }
+        return initialField;
+    }
+}
+
+// console.log(ladybugs(
+//     [
+//         3,
+//         '0 1',
+//         '0 right 1',
+//         '2 right 1'
+//     ]
+// ));
+// console.log(ladybugs(
+//     [
+//         3,
+//         '0 1 2',
+//         '0 right 1',
+//         '1 right 1',
+//         '2 right 1'
+//     ]
+// ));
+// console.log(ladybugs(
+//     [
+//         5,
+//         '3',
+//         '3 left 2',
+//         '1 left -2'
+//     ]
+// ));
+
+function spiralMatrix(input = []) {
+    return printMatrix(getMatrix(input));
+
+    function getMatrix(arr) {
+        let [rows, cols] = arr[0].split(' ').map(Number);
+        let [count, maxCount, minRow, minCol, maxRow, maxCol] = [0, rows * cols, 0, 0, rows - 1, cols - 1];
+
+        let matrix = [];
+        for (let r = 0; r < rows; r++) {
+            matrix[r] = [];
+        }
+
+        while (count < maxCount) {
+            for (let c = minCol; c <= maxCol &&
+                count < maxCount; c++) {
+                matrix[minRow][c] = ++count;
+            }
+            minRow++;
+
+            for (let r = minRow; r <= maxRow &&
+                count < maxCount; r++) {
+                matrix[r][maxCol] = ++count;
+            }
+            maxCol--;
+
+            for (let c = maxCol; c >= minCol &&
+                count < maxCount; c--) {
+                matrix[maxRow][c] = ++count;
+            }
+            maxRow--;
+
+            for (let r = maxRow; r >= minRow &&
+                count < maxCount; r--) {
+                matrix[r][minCol] = ++count;
+            }
+            minCol++;
+        }
+        return matrix;
+    }
+
+    function printMatrix(matrix) {
+        let output = [];
+        matrix.forEach(row => output.push(row.join(' ')));
+        return output.join('\n');
+    }
+}
+
+// console.log(spiralMatrix(['5 5']));
+// console.log(spiralMatrix(['3 3']));
+
+function getFactorial(num) {
+    let fact = 1;
+    while (num > 1) {
+        fact *= num--;
+    }
+    return fact;
+}
+
+// FUNCTIONS
+function orders(product, quantity) {
+    // switch (product) {
+    //     case "coffee":
+    //         total = 1.50 * quantity;
+    //         break;
+    //     case "water":
+    //         total = 1.00 * quantity;
+    //         break;
+    //     case "coke":
+    //         total = 1.40 * quantity;
+    //         break;
+    //     case "snacks":
+    //         total = 2.00 * quantity;
+    //         break;
+    // }
+
+    let menu = {
+        "coffee": 1.50,
+        "water": 1.00,
+        "coke": 1.40,
+        "snacks": 2.00
+    }
+    let price = menu[product];
+    let total = price * quantity;
+    return total.toFixed(2);
+}
+
+function simpleCalculatorExample(firstNumber, secondNumber, operation) {
+    const multiply = (a, b) => a * b;
+    const divide = (a, b) => a / b;
+    const add = (a, b) => a + b;
+    const subtract = (a, b) => a - b;
+
+    switch (operation) {
+        case 'multiply':
+            return multiply(firstNumber, secondNumber);
+        case 'divide':
+            return divide(firstNumber, secondNumber);
+        case 'add':
+            return add(firstNumber, secondNumber);
+        case 'subtract':
+            return subtract(firstNumber, secondNumber);
+    }
+}
+
+// console.log(simpleCalculatorExample(5, 5, 'multiply'));
+// console.log(simpleCalculatorExample(40, 8, 'divide'));
+// console.log(simpleCalculatorExample(12, 19, 'add'));
+// console.log(simpleCalculatorExample(50, 13, 'subtract'));
+
+// smart functions
+// assign function to variable and then choose to assign it to another variable
+function simpleCalculatorOptimize(firstNumber, secondNumber, operationName) {
+    const multiply = (a, b) => a * b;
+    const divide = (a, b) => a / b;
+    const add = (a, b) => a + b;
+    const subtract = (a, b) => a - b;
+
+    let operation;
+    switch (operationName) {
+        case 'multiply':
+            operation = multiply;
+            break;
+        case 'divide':
+            operation = divide;
+            break;
+        case 'add':
+            operation = add;
+            break;
+        case 'subtract':
+            operation = subtract;
+            break;
+    }
+    return operation(firstNumber, secondNumber);
+}
+
+// console.log(simpleCalculatorOptimize(5, 5, 'multiply'));
+// console.log(simpleCalculatorOptimize(40, 8, 'divide'));
+// console.log(simpleCalculatorOptimize(12, 19, 'add'));
+// console.log(simpleCalculatorOptimize(50, 13, 'subtract'));
+
+function simpleCalculatorOptimize2(firstNumber, secondNumber, operationName) {
+    let mathOperations = {
+        'multiply': (a, b) => a * b,
+        'divide': (a, b) => a / b,
+        'add': (a, b) => a + b,
+        'subtract': (a, b) => a - b
+    }
+    return mathOperations[operationName](firstNumber, secondNumber);
+}
+
+// console.log(simpleCalculatorOptimize2(5, 5, 'multiply'));
+// console.log(simpleCalculatorOptimize2(40, 8, 'divide'));
+// console.log(simpleCalculatorOptimize2(12, 19, 'add'));
+// console.log(simpleCalculatorOptimize2(50, 13, 'subtract'));
+
