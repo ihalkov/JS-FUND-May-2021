@@ -14,6 +14,14 @@
 // Format whole document
 // Alt + Shift + F
 
+// value types are in steak (only copy the value if its used in function)
+// reference type are in heap (Array, Object, Function)
+    // (here is not copying the value of array, but is changing it, because is refers to address)
+
+// Func parameters
+// [Noun] or [adj.] + [Noun]
+// speedKmh, firstNumber
+
 //  function always is doing only one thing
 //  do put the parameters always
 
@@ -942,6 +950,136 @@ function getFactorial(num) {
 }
 
 // FUNCTIONS
+
+// function
+    // black box which have certain input
+    // and will return some result
+    // function is a subprogram designed to perform a particular task
+    // we can say to them methods
+    // values can be passed into functions and used within the function
+    // in function declaration we have parameters
+    // when invoking function we have arguments
+
+    // const arr = reference stay the same, but you can change the values inside the array
+    // all the functions needs to be outside from main function
+
+    // have to read the code like newspaper
+        function printReceipt() {
+            printHeader();
+            printBody();
+            printFooter();
+        }
+
+    // camelCase naming
+    // parameter is the input
+    function printStars(count) {
+        console.log("*".repeat(count));
+    }
+
+    
+    // command is one row of execution
+
+// Why use functions?
+    // split large problems into small pieces
+    // better organization of the program
+    // improves code readability and understandability
+    // Avoiding repeating code
+    // DRY (do not repeat yourself)
+    // if we write code and after we want to copy it then we need to have a function
+
+// Function Without Parameters
+    // executes the code between the brackets
+    // function without parameters (result is always the same), unless it reads data from outside of it
+    function multiplyNumbers() {
+        let result = 5 * 5;
+        console.log(result);
+    }
+
+    // multiplyNumbers(); // Expected output: 25
+
+    // RECURSION
+        // itself (recursion)
+        // function crash() {
+        //     crash();
+        // }
+
+        // recursion self-invoking
+        function countDown(x) {
+            console.log(x);
+            if (x > 0) {
+                countDown(x - 1);
+            }
+        }
+        // countDown(10); // useful just have to have always exit point
+
+
+// Declaring Function (statement)
+    // functions can have several parameters
+    // functions always return a value (custom or default)
+    // if we don't put return, the function returns undefined
+    function funcCombination(input) {
+        console.log(input);
+    
+        // return input[0];
+    }
+
+    let functionResult = funcCombination("Pesho"); // print: "Pesho"
+    console.log(functionResult);    // then print the variable return input[0] or "P"
+
+    // Function Declaration can be used before declaration (function hoisting, intepretator makes fast look before)
+    // Function Expression (variable on which we assign function) (don't have hoisting)
+    let printText = function(text) {
+        console.log(text);
+    };
+    
+    const sumDigits = function(firstNumber, secondNumber) {
+        console.log(firstNumber + secondNumber);
+    };
+    
+    let addNumbers = function(firstNumber, secondNumber) {
+        console.log(firstNumber + secondNumber);
+    
+        return addNumbers;
+    };
+
+    // here we declare function with name and we can use the variable name like a function
+        let returnedValue = addNumbers(2, 4);
+        returnedValue(5, 10);
+
+// Arrow Functions
+    // special syntax
+    // accept fixed number of arguments
+
+    let increment = (x) => x + 1;
+    console.log(increment(5)); // 6
+    // => is like return
+
+    // same as
+
+    // let increment = function(x) {
+    //     return x + 1;
+    // }
+
+
+//  Code Structure and Code Formatting
+    //  make sure to use correct indentation
+    //  leave a blank line between functions, after loops and after if statements
+    //  always use curly braces for loops and if statements
+    //  avoid long lines and complex expressions
+
+    {
+        let name = "Pesho";
+        {
+            let name = "Gosho";
+            console.log(name); // Gosho
+        }
+        console.log(name); // Pesho
+    }
+
+
+
+    
+// Examples / Tasks / Problems
 function orders(product, quantity) {
     // switch (product) {
     //     case "coffee":
@@ -1037,4 +1175,89 @@ function simpleCalculatorOptimize2(firstNumber, secondNumber, operationName) {
 // console.log(simpleCalculatorOptimize2(40, 8, 'divide'));
 // console.log(simpleCalculatorOptimize2(12, 19, 'add'));
 // console.log(simpleCalculatorOptimize2(50, 13, 'subtract'));
+
+function oddAndEvenSumModulus(num) {
+    let oddSum = 0;
+    let evenSum = 0;
+
+    while (num > 0) {
+        let curr = num % 10;
+        num = Math.floor(num / 10);
+        if (curr % 2 === 0) {
+            evenSum += curr;
+        } else {
+            oddSum += curr;
+        }
+    }
+    return `Odd sum = ${oddSum}, Even sum = ${evenSum}`;
+}
+
+// console.log(oddAndEvenSum(1000435));
+// console.log(oddAndEvenSum(3495892137259234));
+
+function oddAndEvenSumString(number) {
+    let digits = number.toString().split('').map(Number);
+
+    let oddSum = 0;
+    let evenSum = 0;
+
+    let oddNum = x => {
+        if (x % 2 === 1) {
+            return true;
+        }
+        return false;
+    };
+
+    let calcSums = () => {
+        for (const d of digits) {
+            if (oddNum(d)) {
+                oddSum += d;
+                continue;
+            }
+            evenSum += d;
+        }
+        return [oddSum, evenSum];
+    };
+
+    let sum = calcSums();
+    return `Odd sum = ${sum[0]}, Even sum = ${sum[1]}`;
+}
+
+// console.log(oddAndEvenSum(1000435));
+// console.log(oddAndEvenSum(3495892137259234));
+
+// this function combine the value and operation, but know nothing about them
+function funcCombination(num, operation) {
+    let result = operation(num);
+    console.log(result);
+}
+
+// both are the same
+// funcCombination(5, multiply);
+funcCombination(5, (a) => a * a); // with one param we can remove ()
+funcCombination(2, x => ++x);
+
+// empty arrow function, have to return some value
+funcCombination(5, () => 10);
+
+// each function can be written like arrow function
+// const when we assign function to variable
+
+function sum(x, y) {
+    'use strict';
+    return x + y;
+}
+console.log(sum(2, 3)); // 5
+
+let sum1 = (a, b) => {
+    return a + b;
+};
+
+console.log(sum1(2, 2)); // 4
+
+let sum2 = (a, b) => (a + b);
+console.log(sum2(3, 3)); // 6
+
+let multiply = (a) => a * a;
+
 

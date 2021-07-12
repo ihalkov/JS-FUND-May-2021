@@ -251,7 +251,6 @@ function printReceipt() {
 // all the functions needs to be outside from main function
 
 // recursion self-invoking
-
 function countDown(x) {
     console.log(x);
     if (x > 0) {
