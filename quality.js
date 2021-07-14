@@ -8,6 +8,11 @@
 // in programming 0 is even and odd number
 // in math is only even
 
+// be sure that you can solve the problem with the algorithmic way
+// Array operations
+    // push, pop, shift, unshift
+    // CAN WE IMPLEMENT THIS FUNCTIONALITY???
+
 // Format one market line or multiple lines of code
 // Ctrl + K + F
 
@@ -622,12 +627,88 @@ function solve2(input) {
     console.log(names[2]);
 }
 
+// DESTRUCTURING ASSIGNMENT
+    // JavaScript Demo: Expressions - Destructuring assignment
+    let a, b, rest;
+    [a, b] = [10, 20];
+
+    console.log(a);
+    // expected output: 10
+
+    console.log(b);
+    // expected output: 20
+
+    [a, b, ...rest] = [10, 20, 30, 40, 50];
+
+    console.log(rest);
+    // expected output: Array [30,40,50]
+
 // ARRAYS METHODS
-    // input.shift() (removes the first element of array)
-    // input.pop() (removes the last element of array)
+// original (immutable array)
+// mutable when you change the original array
+    // ...elements give me like array - spread operator
+    // delete can delete element from array, and element of Object
+        // delete removes only the value
+    // push() - add to the end
+    // pop() - remove from the end
+        // if pop() on an empty array, it returns undefined
+        let numbers = [1, 2, 3, 4, 5, 6];
+        let lastElement = numbers.pop();
+
+        console.log(numbers);
+        console.log(lastElement);
+    // unshift() - add to the beginning
+    // shift() - remove from the beginning
+    // slice() - remove a range of elements
+        // slice() part of array, do not change the array
+        // immutable function
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        // slice from 4 elem to end
+        let n = numbers.slice(4);
+
+        // give me till some number
+        let slicePortion = numbers.slice(4, 7);
+        let numbersCopy = numbers.slice();
+
+        console.log(numbersCopy);
+        console.log(n);
+        console.log(slicePortion);
+        console.log(numbers);
+
+    // splice() - insert at position/delete from position
+        // Splice: cut and insert array elements
+        // Note: Removing elements with splice() receives two parameters:
+        // •	Start Index
+        // •	Count of elements you want to remove
+        // Note: Inserting elements with splice() receives three parameters:
+        // •	Start Index
+        // •	Count of elements to remove – if none enter 0
+        // •	Elements to insert at that position
+
+        // mutable function
+        // start number, delete count, elements for input
+        numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        // on fourth positions adds 6
+        // not delete
+        // console.log(numbers);
+        let returnSpliced = numbers.splice(4, 0, 6);
+        // console.log(numbers);
+        returnSpliced = numbers.splice(4, 2, 6);
+
+        let nums = [1, 2, 3, 4, 5, 6, 7, 8];
+        // ...[50, 60] (: spread operator spread the array to separate values :)
+        let spliced = nums.splice(0, 3, ...[50, 60]);
+        // from element count elements
+        console.log(nums);
+        console.log(spliced);
+
     // map is method which creates new array
         // .map() (does one type operations to every element of array)
         // map have second parameter index and increment it automatically
+        // map will return all elements transformed
+        // let nums = [1, 2, 3];
+        // let doubled = nums.map(x => x * 2);
     // arr.includes()
         // Check if the array contains the specified element:
         console.log(arr.includes(20)); // false
@@ -647,8 +728,14 @@ function solve2(input) {
     // .reduce() reduce all the values to one
     // .foreach() have no breaks and can fill the memory
         // can use return to break a foreach
-    // resultArr.join(' - '); (join the elements of the array with " - ")
+    // .join()
+        // is trying to make string
+        // two ways
+        // console.log(firstElements.join(' '));
+        // console.log(...lastElements);
+        // resultArr.join(' - '); (join the elements of the array with " - ")
     // .slice() and .splice()
+        // let numbersCopy = numbers.slice();
         // slice is good brother
         // 1st use slice, then in that copy of the array use splice
         // .slice() return new array
@@ -658,6 +745,23 @@ function solve2(input) {
     // with .shift and .push we change the array
     // .unshift() put new element on first position
     // .filter()
+        // Filter is immutable
+        // needs a function to return true or false
+        function filterArr() {
+            let numbers = [1, 2, 3, 4, 5];
+            // let oddNumbers = numbers.filter(checkOdd);
+            let oddNumbers = numbers.filter(x => x % 2 !== 0);
+            console.log(oddNumbers);
+        }
+
+        function checkOdd(number) {
+            if (number % 2 !== 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        // filterArr();
         // let filtered = [12, 5, 8, 130, 44].filter(value => value >= 10);
         // console.log(filtered); // 12, 130, 44
         numbers = numbers.filter(num => {
@@ -671,6 +775,18 @@ function solve2(input) {
             let [rows, cols] = arr.split(' ')
             .filter(x => x != '')
             .map(Number);
+
+        // locale compare
+            let arrStr = ['jvan', 'ivan'];
+
+            let compare = arrStr[0].localeCompare(arrStr[1]);
+
+            let sorted = arrStr.sort((a, b) => a.localeCompare(b));
+            // return -1 when first is smaller
+            // return 0 when they are the same
+            // return +1 when first is bigger
+
+            console.log(compare);
 
     // array with given size filled with zeroes
         let newArr = new Array(fieldSize).fill(0);
