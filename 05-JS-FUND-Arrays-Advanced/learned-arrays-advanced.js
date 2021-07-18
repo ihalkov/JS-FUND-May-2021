@@ -93,7 +93,7 @@ function splice(start, deleteCount = 0, ...items) {
 
 // splice(10);
 
-// Filtering and transforming elments
+// Filtering and transforming elements
 // .join()
 // is trying to make string
 // two ways
@@ -128,7 +128,6 @@ function checkOdd(number) {
         return false;
     }
 }
-
 // filterArr();
 
 // Map and Filter are immutable
@@ -201,9 +200,13 @@ let sorted = arrStr.sort((a, b) => a.localeCompare(b));
 console.log(compare);
 
 // Get random number from arr of numbers
-// let numbers = [3, 5, 8, 1, 2, 9, 4, 7, 6];
-// let randomIndex = Math.floor(Math.random() * (numbers.length - 1));
-// let number = numbers[randomIndex];
+let numbers = [3, 5, 8, 1, 2, 9, 4, 7, 6];
+let randomIndex = Math.floor(Math.random() * (numbers.length - 1));
+let number = numbers[randomIndex];
+console.log(number);
+
+// The Math.random() function returns a floating-point, pseudo-random number in the range 0 to less than 1 (inclusive of 0, but not 1) with approximately uniform distribution over that range — which you can then scale to your desired range.
+console.log(Math.random()); // num >= 0 && num < 1
 
 // Have to use clone (copy) of the input array
 const sheeps = ['🐑', '🐑', '🐑'];
@@ -214,7 +217,7 @@ const cloneSheeps = sheeps.slice();
 // ES6 way
 const cloneSheepsES6 = [...sheeps];
 
-// let filtering an transforming elements
+// let filtering and transforming elements
 let nums = ['one', 'two', 'three', 'four'];
 console.log(nums.join('|')); // one|two|three|four
 
@@ -364,14 +367,14 @@ console.log(array1.reduce(reducer, 5));
 // Array always have to be cloned, in new function also
 // let inventory = [1, 2, 4];
 
-// function solve(equip = []) {
-//     equip = inventory.slice(0);
+// function solve() {
+//     let equip = inventory.slice(0);
 //     equip.pop();
 //     console.log(equip);
 // }
 
-// solve(inventory);
-// console.log(inventory);
+// solve(inventory); // [1, 2]
+// console.log(inventory); // [1, 2, 4]
 
 // let peopleInWagons = input.shift().split(' ').map(Number);
 // let maxCapacity = + input.shift(); to Number
@@ -457,9 +460,7 @@ function sumLastKNumbersSequence(n, k) {
 // console.log(sumLastKNumbersSequence(9, 5));
 
 // filter elements
-
 let arr = [1, 2, 3];
-
 arr.splice(1, 5);
 console.log(arr);
 
@@ -542,11 +543,10 @@ function processOddNumbers(input = []) {
     //     return 1;
     // }
     function func(x) {
-        let isTrue = false;
-
         if (x > 10) {
             return true;
         }
+        return false;
     }
 
     let numbers = [1, 3, 28, 11, 5, 103, 132];

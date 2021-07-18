@@ -8,6 +8,7 @@ let numbers = [1, 2, 3, 4, 5, 6];
 
 Array.prototype.puuush = function () {
     let startIndex = this.length;
+    let numOfElements = arguments.length;
     let newLength = this.length = this.length + numOfElements;
 
     let argsIndex = 0;

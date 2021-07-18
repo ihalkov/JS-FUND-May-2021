@@ -548,7 +548,28 @@ function shoppingList(input = []) {
 //     ]
 // ));
 
-// ARRAYS
+// ARRAYS INFO
+    // let peopleInWagons = input.shift().split(' ').map(Number);
+    // let maxCapacity = + input.shift(); to Number
+
+    // console.log(numbers.indexOf(ind)); if we have that element will return index of it
+    // if not will return -1
+
+    // let a = arr.shift() || 0; if not return 0
+
+    // Array always have to be cloned, in new function also
+    // let inventory = [1, 2, 4];
+
+    // function solve() {
+    //     let equip = inventory.slice(0);
+    //     equip.pop();
+    //     console.log(equip);
+    // }
+
+    // solve(inventory);
+    // console.log(inventory);
+
+    // in JS Array is object, can be index -1 with value, but did not change the length
     // collection of variables in one place
     // array is sequence of elements
     // 0,1,2,3,4 indexes
@@ -676,6 +697,15 @@ function solve2(input) {
         console.log(slicePortion);
         console.log(numbers);
 
+        // Have to use clone (copy) of the input array
+        const sheeps = ['🐑', '🐑', '🐑'];
+
+        // Old way
+        const cloneSheeps = sheeps.slice();
+
+        // ES6 way
+        const cloneSheepsES6 = [...sheeps];
+
     // splice() - insert at position/delete from position
         // Splice: cut and insert array elements
         // Note: Removing elements with splice() receives two parameters:
@@ -703,12 +733,23 @@ function solve2(input) {
         console.log(nums);
         console.log(spliced);
 
+        let numbers = [5, 10, 15, 20, 25, 30];
+        // index, delete count, add items if needed
+        numbers.splice(3, 2, 'twenty', 'twenty-five');
+        console.log(numbers.join(' | '));
+
     // map is method which creates new array
         // .map() (does one type operations to every element of array)
         // map have second parameter index and increment it automatically
         // map will return all elements transformed
         // let nums = [1, 2, 3];
         // let doubled = nums.map(x => x * 2);
+        // A Map object iterates its elements in insertion order — a for...of loop returns an array of [key, value] for each iteration.
+        // numArr.map((el, ind) => el + ind);
+
+
+
+
     // arr.includes()
         // Check if the array contains the specified element:
         console.log(arr.includes(20)); // false
@@ -725,7 +766,53 @@ function solve2(input) {
         }
 
     // arr.push(); put element at the end of array
+
     // .reduce() reduce all the values to one
+        function reduceSum() {
+            let numbers = [1, 2, 3, 5, 7, 9];
+        
+            let sum = numbers.reduce((acc, curr) =>{
+                acc += curr;
+                return acc;
+                }, 0);
+        
+            return sum;
+        }
+        
+        // reducer function which you provide on each element of the array, resulting on single output value
+        const array1 = [1, 2, 3, 4];
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        
+        // 1 + 2 + 3 + 4
+        console.log(array1.reduce(reducer));
+        // Output: 10
+        
+        // 5 + 1 + 2 + 3 + 4
+        console.log(array1.reduce(reducer, 5));
+        // 5 is initial value and is the starter of the accumulation and is putted like argument
+        // is not part of the array
+        
+        // Output: 15
+        
+        // The reducer function takes four arguments:
+        
+        // Accumulator (acc)
+        // Current Value (cur)
+        // Current Index (idx)
+        // Source Array (src)
+
+        // Your reducer function's returned value is assigned to the accumulator,
+        // whose value is remembered across each iteration throughout the array,
+        // and ultimately becomes the final, single resulting value.
+
+        // let countOccurrence = takenNumbers.reduce((acc, curr) => {
+        //     if (curr === searchedNumber) {
+        //         acc += 1;
+        //     }
+
+        //     return acc;
+        // }, 0);
+
     // .foreach() have no breaks and can fill the memory
         // can use return to break a foreach
     // .join()
@@ -776,6 +863,12 @@ function solve2(input) {
             .filter(x => x != '')
             .map(Number);
 
+            let nums = ['one', 'two', 'three', 'four'];
+            console.log(nums.join('|')); // one|two|three|four
+
+            let filteredNums = nums.filter(x => x.startsWith('t'));
+            console.log(filteredNums.join('|')); // two|three
+
         // locale compare
             let arrStr = ['jvan', 'ivan'];
 
@@ -787,6 +880,82 @@ function solve2(input) {
             // return +1 when first is bigger
 
             console.log(compare);
+
+        // sort()
+            // always some of
+            //  return a.localeCompare(b);
+            //  or
+            //  return a.length - b.length;
+
+            function sortAnArrayBy2Criteria(input = []) {
+                let sorted = input.sort((a, b) => {
+                    let res = a.length - b.length;
+                    if (res === 0) {
+                        return a.localeCompare(b, 'en', {
+                            sensitivity: 'base'
+                        });
+                    }
+                    return res;
+                });
+                return sorted.join('\n');
+            }
+
+            sortingNumbers();
+
+            function sortingNumbers() {
+                const numbers = [1, 3, 5, 8, 7];
+                let cloneNumbers = numbers.slice(0);
+
+                // ascending
+                cloneNumbers.sort((a, b) => a - b); // [1, 3, 5, 7, 8]
+                console.log(cloneNumbers);
+
+                // descending
+                cloneNumbers.sort((a, b) => b - a); // [8, 7, 5, 3, 1]
+
+                console.log(cloneNumbers);
+            }
+
+            // sorting strings
+            sortingStrings();
+
+            function sortingStrings() {
+                const str = ['Apple', 'Orange', 'Lemon', 'wiski', 'beer', 'cola', 'beers', 'apples', 'oranges'];
+                let cloneStr = str.slice(0);
+
+            
+                // console.log(lengthAndAlphabetical(cloneStr));
+                // console.log(alphabeticalAndLength(cloneStr));
+
+
+                function lengthAndAlphabetical(str) {
+                    str.sort((a, b) => {
+                        if (a.length - b.length === 0) {
+                            return a.localeCompare(b);
+                        }
+                        return a.length - b.length;
+                    });
+
+                    return str;
+                }
+
+                function alphabeticalAndLength(str) {
+                    str.sort((a, b) => {
+                        if (a === b) {
+                            return a.length - b.length;
+                        }
+                        return a.localeCompare(b);
+                    });
+
+                    return str;
+                }
+            }
+
+            // Math.random()
+                // Get random number from arr of numbers
+                // let numbers = [3, 5, 8, 1, 2, 9, 4, 7, 6];
+                // let randomIndex = Math.floor(Math.random() * (numbers.length - 1));
+                // let number = numbers[randomIndex];
 
     // array with given size filled with zeroes
         let newArr = new Array(fieldSize).fill(0);
@@ -812,6 +981,253 @@ function solve2(input) {
 // arrow function
     let addArrow = (x, y) => x + y;
     console.log(addArrow(10, 20));
+
+// METHODS IMPLEMENTED
+    // FILTER IMPLEMENTATION
+    const words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+    const result = words.filter((word, ind) => word.length > 6);
+
+    console.log(result);
+    // expected output: Array ["exuberant", "destruction", "present"]
+
+    // function isBigEnough(value) {
+    //     return value >= 10
+    // }
+
+    // let filtered = [12, 5, 8, 130, 44].filter(isBigEnough);
+    // filtered is [12, 130, 44]
+
+    Array.prototype.fiilter = function (isTrue) {
+        let filtered = [];
+        let ind = arguments[1];
+        let count = 0;
+        for (let i = 0; i < this.length; i++) {
+            ind = i;
+            let res = isTrue(this[i]);
+            if (res === true) {
+                filtered[count] = this[i];
+                count += 1;
+            }
+        }
+    
+        return filtered;
+    }
+    
+    // function fill() {
+    //     return 1;
+    // }
+    function func(x) {
+        if (x > 10) {
+            return true;
+        }
+        return false;
+    }
+    
+    let numbers = [1, 3, 28, 11, 5, 103, 132];
+    // let result = numbers.fiilter(func);
+    let otg = numbers.fiilter((x, ind) => {
+        if (x % 2 === 0) {
+            return true;
+        }
+        return false;
+    });
+    
+    console.log(otg);
+    
+    // filter index
+    // to return current index
+
+// PUSH IMPLEMENTATION
+    // push adds one or more elements to the end of the array
+    let numbers = [1, 2, 3, 4, 5, 6];
+    let countOfElements = numbers.push('cow', 7); // adds to the end of array
+    // console.log(le);
+    // console.log(numbers);
+    // console.log(typeof(numbers[7])); // number
+    // console.log(typeof(numbers[6])); // string
+
+    Array.prototype.puuush = function () {
+        let startIndex = this.length;
+        let numOfElements = arguments.length;
+        let newLength = this.length = this.length + numOfElements;
+
+        let argsIndex = 0;
+        for (let i = startIndex; i < newLength; i++) {
+            this[i] = arguments[argsIndex];
+            argsIndex += 1;
+        }
+
+        return newLength;
+    }
+
+    let numOfElems = numbers.puuush(1, 2, 'osem');
+    console.log(numbers);
+    console.log(numOfElems);
+
+    // other way
+    function push(arr, ...elements) {
+        // ...elements give me like array, rest operator
+    
+        let arrLength = arr.length + elements.length;
+        for (let i = 0; i < arrLength; i++) {
+           arr[arr.length] = elements[i];
+        }
+        
+        return arr.length;
+    }
+    
+    push([1, 2, 3], 'a', 3);
+
+    // POP IMPLEMENTATION
+    // pop()
+    // method is also function
+    let numbers = [1, 2, 3, 4, 5, 6];
+
+    let lastElement = numbers.pop();
+
+    console.log(numbers);
+    console.log(lastElement);
+
+// POP IMPLEMENTATION
+    function pop(arr) {
+        // type check, defensive programming
+        // if (!Array.isArray(arr)) {
+        //     return;
+        // }
+        let lastElement = arr[arr.length - 1];
+        arr.length = arr.length - 1;
+        // let newArr = new Array(newArrLength);
+
+        // for (let i = 0; i < newArrLength; i++) {
+        //     newArr[i] = arr[i];
+        // }
+
+        // arr.pop();
+
+        return lastElement;
+    }
+
+    let le = pop(numbers);
+    console.log(numbers);
+    console.log(le);
+
+    // mutation function
+    Array.prototype.poop = function () {
+        let lastElement = this[this.length - 1];
+
+        this.length = this.length - 1;
+
+        return lastElement;
+    }
+
+    let n = [1, 2, 3, 4, 5];
+    let lee = n.poop();
+    console.log(n);
+    console.log(le);
+
+// MAP IMPLEMENTATION
+    const array1 = [1, 4, 9, 16];
+
+    // pass a function to map
+    const map1 = array1.map(x => x * 2);
+    console.log(map1);
+    // expected output: Array [2, 8, 18, 32]
+
+    Array.prototype.maap = function (call) {
+        let newArr = [];
+
+        for (let i = 0; i < this.length; i++) {
+            newArr[i] = call(this[i]);
+        }
+
+        return newArr;
+    }
+
+    function addOneToX(x) {
+        return x + 1;
+    }
+
+    const numbers = [1, 2, 3];
+    const newNumbers = numbers.maap(addOneToX);
+    const arrowNewNumbers = numbers.maap(x => x + 1);
+
+// REDUCE IMPLEMENTATION
+    const array1 = [1, 2, 3, 4];
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+    // 1 + 2 + 3 + 4
+    console.log(array1.reduce(reducer));
+    // expected output: 10
+
+    // 5 + 1 + 2 + 3 + 4
+    console.log(array1.reduce(reducer, 5));
+    // expected output: 15
+
+    Array.prototype.reduuce = function (red, initVal = 0) {
+        let acc = initVal;
+
+        for (let i = 1; i < this.length; i++) {
+            let curr = this[i];
+            acc = red(acc, curr);
+        }
+
+        return acc;
+    }
+
+    const numbers = [1, 2, 3, 4];
+    const reduceer = (accumulator, currentValue) => accumulator + currentValue;
+
+    console.log(numbers.reduuce(reduceer));
+    console.log(numbers.reduuce(reduceer, 5));
+
+// SHIFT IMPLEMENTATION
+    // shift() removes first element, and return it
+    let numbers = [1, 2, 3, 4];
+    let firstElem = numbers.shift(); 
+
+    console.log(firstElem);
+    console.log(numbers);
+
+    Array.prototype.shiift = function () {
+        let firstElement = this[0];
+
+        // make new Array with length old Array length - 1
+        let newArrLength = this.length - 1;
+        let newArr = new Array(newArrLength);
+
+        // put values to newArr
+        for (let i = 0; i < newArrLength; i++) {
+            newArr[i] = this[i + 1];
+        }
+
+        // make old array with length - 1
+        this.length = this.length - 1;
+        // put change values to old array
+        for (let j = 0; j < this.length; j++) {
+            this[j] = newArr[j];
+        }
+        
+        return firstElement;
+    }
+
+    Array.prototype.shiiift = function () {
+        let firstElement = this[0];
+
+        // change values
+        for (let i = 1; i < this.length; i++) {
+            this[i - 1] = this[i];
+        }
+
+        // make old array with length - 1
+        this.length = this.length - 1;
+        
+        return firstElement;
+    }
+
+    let letters = ['a', 'b', 'c', 'd', 'e', 'f'];
+    let fe = letters.shiiift();
+    console.log(fe);
+    console.log(letters);
 
 // Multidimensional Arrays
     // mainly with 2 dimensional. The concept is as simple as working with a simple 1-dimensional array.
@@ -846,6 +1262,29 @@ function solve2(input) {
     // for (let r = 0; r < rows; r++) matrix[r] = new Array(r + 1).fill(r + 1);
     // console.log(matrix);
 
+    // Math.Max()
+    function sumLastKNumbersSequence(n, k) {
+        let seq = [ 1 ];
+        for (let i = 2; i <= n; i++) {
+            let end = Math.max(0, seq.length - k);
+            let currNum = addNewNumber(seq.length - 1, end, seq);
+            seq.push(currNum);
+        }
+        return seq.join(' ');
+    
+        function addNewNumber(start, end, seq) {
+            let num = 0;
+            for (let i = start; i >= end; i--) {
+                num += seq[i];
+            }
+            return num;
+        }
+    }
+    
+    // console.log(sumLastKNumbersSequence(6, 3));
+    // console.log(sumLastKNumbersSequence(8, 2));
+    // console.log(sumLastKNumbersSequence(9, 5));
+
     // from Orbit problem
     matrix[r][c] = Math.max(Math.abs(r - starRow), Math.abs(c - starCol)) + 1;
 
@@ -860,6 +1299,36 @@ function solve2(input) {
         return strArr;
     }
 
+    // map Matrix to Numbers
+        let matrix =
+            ['5 10 15 20',
+            '10 10 10 10',
+            '10 15 10 10',
+            '10 10 10 10'];
+
+        function mapMatrixToNumbers(arr) {
+            return arr.map(row => row.split(' ').map(Number));
+        }
+
+        let numberMatrix = mapMatrixToNumbers(matrix);
+
+        function extractColumn(arr, column) {
+            return arr.map(x => x[column])
+        }
+
+        let col = extractColumn(matrix, 0);
+
+    // iterate over row, iterate over column of this row ;)
+        numberMatrix.map(row => row.map(col => {
+            if (col > 0) {
+                count += 1;
+                damage += col;
+            }
+        }));
+
+    // iterate over two matrices
+        let currTempEl = tempMatrix[row % tempRows][col % tempCols];
+        let currMessEl = messageMatrix[row][col];
 
 // Recursion
 function condenseArrayOfNumbers(numbers) {
@@ -1075,6 +1544,7 @@ function getFactorial(num) {
     // values can be passed into functions and used within the function
     // in function declaration we have parameters
     // when invoking function we have arguments
+    // functions have to return something always, but not console.log
 
     // const arr = reference stay the same, but you can change the values inside the array
     // all the functions needs to be outside from main function
@@ -1310,6 +1780,21 @@ function oddAndEvenSumModulus(num) {
 
 // console.log(oddAndEvenSum(1000435));
 // console.log(oddAndEvenSum(3495892137259234));
+
+function processOddNumbers(input = []) {
+    let numbers = input;
+    let result = numbers
+        .filter(function (el, ind) {
+            return ind % 2 !== 0;
+        })
+        .map(x => x * 2)
+        .reverse();
+    console.log(...result);
+}
+
+
+// processOddNumbers([10, 15, 20, 25]);
+// processOddNumbers([3, 0, 10, 4, 7, 3]);
 
 function oddAndEvenSumString(number) {
     let digits = number.toString().split('').map(Number);
