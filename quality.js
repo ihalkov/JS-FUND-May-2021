@@ -1229,6 +1229,30 @@ function solve2(input) {
     console.log(fe);
     console.log(letters);
 
+// SLICE IMPLEMENTATION
+    // slice()
+    let numbers = [0, 1, 2, 3, 4, 5, 6, 7];
+    Array.prototype.sliice = function (start = 0, end = this.length) {
+        let sliced = [];
+        let slicedIndex = 0;
+        for (let i = start; i < end; i++) {
+            sliced[slicedIndex] = this[i];
+            slicedIndex += 1;
+        }
+
+        return sliced;
+    }
+
+    let arrCopy = numbers.sliice();
+    let slicedArr = numbers.sliice(4);
+    let slicedArrFromTo = numbers.sliice(4, 7);
+
+    console.log(arrCopy);
+    console.log(slicedArr);
+    console.log(slicedArrFromTo);
+    console.log(numbers);
+    console.log(numbers);
+
 // Multidimensional Arrays
     // mainly with 2 dimensional. The concept is as simple as working with a simple 1-dimensional array.
     // It is just an array of arrays.
@@ -1329,6 +1353,107 @@ function solve2(input) {
     // iterate over two matrices
         let currTempEl = tempMatrix[row % tempRows][col % tempCols];
         let currMessEl = messageMatrix[row][col];
+
+    // coordinates example
+        let coords = [[0, 0], [0, 1], [1, 1], [2, 2], [0, 3]];
+        coords = getValidCoords(coords);
+        
+        function getValidCoords(coords) {
+        
+            // coords = coords.map(curr => { // iterate over everything
+            let index = 0;
+            while (index < coords.length) {
+                let curr = coords[index];
+                let x = curr[0];
+                let y = curr[1];
+        
+                let result = coords.filter(c => {
+                    let currX = c[0];
+                    let currY = c[1];
+                    // dont matter the arrangement of coords just we need the bombs to explode
+                    let diffX = Math.abs(x - currX);
+                    let diffY = Math.abs(y - currY);
+                    if (diffX > 1 || diffY > 1) {
+                        return c;
+                    }
+                });
+        
+                coords = [curr, ...result];
+                index += 1;
+            }
+        
+            return coords.reverse();
+        }
+
+    // iterate over a bomb in matrix
+        let matrix =
+        ['5 10 15 20',
+        '10 10 10 10',
+        '10 15 10 10',
+        '10 10 10 10'];
+
+        function mapMatrixToNumbers(arr) {
+            return arr.map(row => row.split(' ').map(Number));
+        }
+
+        let matrixOfNumbers = mapMatrixToNumbers(matrix);
+
+        function extractColumn(arr, column) {
+            return arr.map(x => x[column])
+        }
+
+        // let col = extractColumn(matrixOfNumbers, 0);
+
+        console.log();
+
+
+        // bomb coords
+        let x = 3;
+        let y = 3;
+
+
+        // start row col
+        matrixOfNumbers = explodeBomb(x, y, matrixOfNumbers);
+
+
+        function explodeBomb(x, y, matrixOfNumbers) {
+            const bombPower = matrixOfNumbers[x][y];
+
+            let startRow = x - 1;
+            let startCol = y - 1;
+
+            let row = startRow;
+            let col = startCol;
+
+            let rowLength = matrixOfNumbers[0].length;
+            let colLength = matrixOfNumbers.length;
+
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 3; j++) {
+                    if (row >= 0 && col >= 0 && row <= rowLength - 1 && col <= colLength - 1) {
+                        matrixOfNumbers[row][col] = explodingBunny(row, col);
+                    }
+
+                    col += 1;
+                }
+                col = startCol;
+                row += 1;
+            }
+
+            return matrixOfNumbers;
+
+            function explodingBunny(row, col) {
+                let currentBunny = matrixOfNumbers[row][col];
+                let result = currentBunny - bombPower;
+                if (result < 0) {
+                    result = 0;
+                }
+
+                return result;
+            }
+        }
+
+        
 
 // Recursion
 function condenseArrayOfNumbers(numbers) {
