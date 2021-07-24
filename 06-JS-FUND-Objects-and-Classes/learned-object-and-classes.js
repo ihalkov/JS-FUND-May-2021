@@ -264,23 +264,23 @@ for (const ind in fruits) {
 }
 
 
-// let el = JSON.parse(input[i]);
-// let entry = Object.entries(el);
-// dict[entry[0][0]] = entry[0][1];
+let el = JSON.parse(input[i]);
+let entry = Object.entries(el);
+dict[entry[0][0]] = entry[0][1];
 
 // everything in constructor is like you want to do it at the moment
 // methods can be out of constructor
 
-// let [systemName, componentName, subComponentName] = input.shift().split(' | ');
-// let sortedKeys = Object.keys(obj).sort((a, b) => {
-//     let bValueLength = Object.keys(obj[b]).length;
-//     let aValueLength = Object.keys(obj[a]).length;
+let [systemName, componentName, subComponentName] = input.shift().split(' | ');
+let sortedKeys = Object.keys(obj).sort((a, b) => {
+    let bValueLength = Object.keys(obj[b]).length;
+    let aValueLength = Object.keys(obj[a]).length;
 
-// sortedKeys.forEach(key => {
-//     let sortSubKeys = Object.keys(obj[key]).sort((a, b) => {
-//         let bValueLength = Object.keys(obj[key][b]).length;
-//         let aValueLength = Object.keys(obj[key][a]).length;
-//         return bValueLength - aValueLength;
+sortedKeys.forEach(key => {
+    let sortSubKeys = Object.keys(obj[key]).sort((a, b) => {
+        let bValueLength = Object.keys(obj[key][b]).length;
+        let aValueLength = Object.keys(obj[key][a]).length;
+        return bValueLength - aValueLength;
 
  // get returns current price of the laptop
 //  get price() { return 800  - (this.info.age * 2) + (this.quality * 0.5); };
@@ -304,9 +304,9 @@ function personInfo(firstName, lastName, age) {
 // console.log(personInfo('Ivan', 'Halkov', 29));
 
 class Person {
-    constructor(name, LName, age) {
-        this.name = name;
-        this.LName = LName;
+    constructor(firstName, lastName, age) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = Number(age);
     }
 }
@@ -351,20 +351,20 @@ for (const key of Object.keys(obj)) {
 // }
 
 // Value vs. Reference Types
-// memory stack and heap
-// JS has 7 data types that are copied by value:
-// Boolean, String, Number, null, undefined, Symbol, BigInt
-// these are primitive types
+    // memory stack and heap
+    // JS has 7 data types that are copied by value:
+    // Boolean, String, Number, null, undefined, Symbol, BigInt
+    // these are primitive types
 
 // JS has 3 data types that are copied by having their reference copied:
-// Array, Objects and Functions
-// these are all technically Objects, so we'll refer to them collectively as Objects
+    // Array, Objects and Functions
+    // these are all technically Objects, so we'll refer to them collectively as Objects
 
 // convert to JSON string
-// let test = JSON.stringify(obj);
+    let test = JSON.stringify(obj);
 
 // we can convert JSON string into object using JSON.parse(text)
-// let obj = JSON.parse(text);
+    let obj = JSON.parse(text);
 
 // Classes
 // object models

@@ -2003,9 +2003,17 @@ let multiply = (a) => a * a;
 // Definition, properties and methods
 // Object methods
 // Object iteration
+// in JS at run time you can add and remove properties of any object
+
+// this keyword is used to set a property of the objects to a given value
 
 // JSON
-// JavaScript Object Notation
+    // JavaScript Object Notation
+    // convert to JSON string
+    let test = JSON.stringify(obj);
+
+    // we can convert JSON string into object using JSON.parse(text)
+    let obj = JSON.parse(text);
 
 // Classes
 
@@ -2117,9 +2125,51 @@ person.shout();
 
 // What are Classes?
     // extensible program-code-template for creating objects
+    // provides initial values for the state of an object
+
     // functionality which creates objects
     // template which creates object
     // function which returns object, constructor functions
+    // an object created by the class pattern is called an instance of the class
+    // a class has a constructor - subroutine called to create an object
+    // it prepares the new object for use
+    class Student {
+        constructor(name) {
+            this.name = name;
+        }
+    }
+
+    // instance of the class with keyword new
+        // classes can also have functions as property, called, methods
+        // we access the method as a regular property
+
+        function catInfo(input = []) {
+            let cats = [];
+        
+            class Cat {
+                constructor(name, age) {
+                    this.name = name;
+                    this.age = age;
+                }
+        
+                sayMeow() {
+                    console.log(`${this.name}, age ${this.age} says Meow`);
+                };
+            }
+        
+            for (const line of input) {
+                let [name, age] = line.split(' ');
+                cats.push(new Cat(name, age));
+            }
+        
+            return cats.forEach(cat => cat.sayMeow());
+        }
+        
+        // catInfo(['Mellow 2', 'Tom 5']);
+
+        
+    // everything in constructor is like you want to do it at the moment
+        // methods can be out of constructor
     // this (points to current instance of the class)
     // Example: we have person
         // every one have name, eyes
@@ -2158,6 +2208,9 @@ person.shout();
                 console.log(`${this.name} - lqqlqlqlq`);
             }
         }
+
+        // everything in constructor is like you want to do it at the moment
+        // methods can be out of constructor
 
         // class make it easier to make objects
         let firstPerson = new Human('Pesho', '23');
@@ -2247,3 +2300,75 @@ person.shout();
         console.log(`ind: ${ind} => ${fruits[ind]}`);
     }
 
+ // get returns current price of the laptop
+    //  get price() { return 800  - (this.info.age * 2) + (this.quality * 0.5); };
+
+
+    // Object
+    function personInfo(firstName, lastName, age) {
+        let person = {};
+        person.firstName = firstName;
+        person.lastName = lastName;
+        person.age = Number(age);
+    
+        return person;
+    }
+    
+    // console.log(personInfo('Ivan', 'Halkov', 29));
+    
+    // Class
+    class Person {
+        constructor(firstName, lastName, age) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.age = Number(age);
+        }
+    }
+
+    let p = new Person('Ivan', 'Halkov', 29);
+    console.log(p);
+
+// Methods of Objects
+    // functions within JS object are called methods
+    let person = {
+        sayHello: function () {
+            console.log('Hi, guys');
+        }
+    };
+
+    let person = {
+        sayHello() {
+            console.log('Hi, guys');
+        }
+    };
+
+    let person = {
+        name: 'Peter',
+        age: 20
+    };
+    person.sayHello = () => console.log('Hi, guys');
+
+// Iterate through keys
+    let obj = {
+        name: 'Peter',
+        age: '18',
+        grade: '5.50'
+    };
+
+    for (const key of Object.keys(obj)) {
+        console.log(`${key}: ${obj[key]}`);
+    }
+
+// Object entries
+for (const [key, value] of entries) {
+}
+
+// Value vs. Reference Types
+    // memory stack and heap
+    // JS has 7 data types that are copied by value:
+    // Boolean, String, Number, null, undefined, Symbol, BigInt
+    // these are primitive types
+
+// JS has 3 data types that are copied by having their reference copied:
+    // Array, Objects and Functions
+    // these are all technically Objects, so we'll refer to them collectively as Objects
