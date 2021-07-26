@@ -85,6 +85,11 @@
 // Ternary operator
 // return check ? "yes" : "no";
 
+
+// Parse Input
+    // "Student name: Steven, Grade: 10, Graduated with an average score: 4.20",
+    let [name, grade, avgScore] = currStudent.map(x => isNaN(x = x.split(': ')[1]) ? x : Number(x));
+
 function getDate(year, month, day) {
     let dt = new Date(year, month, day);
     let y = dt.getFullYear();
@@ -631,6 +636,23 @@ function shoppingList(input = []) {
                         const element = object[key];
                     }
                 }
+
+                    // LOOPS (for-of and for-in)
+                    let fruits = ['banana', 'apple', 'orange', 'kiwi'];
+
+                    console.log('for-of');
+                    for (const fruit of fruits) {
+                        // currFruit
+                        console.log(`el: ${fruit}`);
+                    }
+
+                    console.log('');
+                    console.log('for-in');
+                    for (const ind in fruits) {
+                        // indexes of fruits
+                        // by this indexes we can call particular fruit
+                        console.log(`ind: ${ind} => ${fruits[ind]}`);
+                    }
 
     // Arrays better to be with one type data
         // Array of different types
@@ -2094,9 +2116,74 @@ person.shout();
     // Object.entries(person) (array of [key, value] arrays)
     // Object.keys(person) (array of keys)
     // Object.values(person) (array of values)
-
     let personEntries = Object.entries(person);
     console.log(Object.fromEntries(personEntries));
+
+// OBJECT WITH functions inside (useful instead of if-else statements and is more clear and smart)
+    function shoppingList(input = []) {
+        let list = input.shift().split('!');
+    
+        for (const line of input) {
+            if (line === 'Go Shopping!') {
+                break;
+            }
+            let data = line.split(' ');
+            let command = data[0];
+            let item = data[1];
+    
+            let obj = {
+                'Urgent': function (list, item) {
+                    if (!list.includes(item)) {
+                        list.unshift(item)
+                    }
+                    return list;
+                },
+                'Unnecessary': function (list, item) {
+                    if ((ind = list.indexOf(item)) !== -1) {
+                        list.splice(ind, 1);
+                    }
+                    return list;
+                },
+                'Correct': function (list, item) {
+                    let newItem = data[2];
+                    if ((ind = list.indexOf(item)) !== -1) {
+                        list[ind] = newItem;
+                    }
+                    return list;
+                },
+                'Rearrange': function (list, item) {
+                    if ((ind = list.indexOf(item)) !== -1) {
+                        list.splice(ind, 1);
+                        list.push(item);
+                    }
+                    return list;
+                },
+            }
+    
+            list = obj[command](list, item);
+        }
+        return list.join(', ');
+    }
+    
+    // console.log(shoppingList(
+    //     [
+    //         'Tomatoes!Potatoes!Bread',
+    //         'Unnecessary Milk',
+    //         'Urgent Tomatoes',
+    //         'Go Shopping!'
+    //     ]
+    // ));
+    // console.log(shoppingList(
+    //     [
+    //         'Milk!Pepper!Salt!Water!Banana',
+    //         'Urgent Salt',
+    //         'Unnecessary Grapes ',
+    //         'Correct Pepper Onion',
+    //         'Rearrange Grapes',
+    //         'Correct Tomatoes Potatoes',
+    //         'Go Shopping!'
+    //     ]
+    // ));
 
 // JSON
     // JavaScript Object Notation
@@ -2240,10 +2327,73 @@ person.shout();
         firstPerson.sing();
         secondPerson.sing();
 
+        // Another class example
+        class Vehicle {
+            constructor(type, model, parts, fuel) {
+                this.type = type;
+                this.model = model;
+                this.parts = parts;
+                this.fuel = fuel;
+                this.parts.quality = this.parts.engine * this.parts.power;
+            }
+        
+            drive(decrease) {
+                this.fuel -= decrease;
+            }
+        }
+        
+        // let parts = {
+        //     engine: 6,
+        //     power: 100
+        // };
+        // let vehicle = new Vehicle('a', 'b', parts, 200);
+        // vehicle.drive(100);
+        // console.log(vehicle.fuel);
+        // console.log(vehicle.parts.quality);
+
+        function classStorage() {
+            class Storage {
+                constructor(capacity) {
+                    this.capacity = capacity;
+                    this.storage = []; // we don't know what will storage so empty []
+                    this.totalCost = 0; // we know that we will sum so default 0, if multiply 1
+                }
+            
+                addProduct(product) {
+                    this.storage.push(product);
+                    this.capacity -= product.quantity;
+                    this.totalCost += product.quantity * product.price;
+                }
+            
+                getProducts() {
+                    let output = [];
+                    for (let i = 0; i < this.storage.length; i++) {
+                        output.push(JSON.stringify(this.storage[i]));
+                    }
+                    return output.join('\n');
+                }
+            }
+            
+            let productOne = { name: 'Cucumber', price: 1.50, quantity: 15 };
+            let productTwo = { name: 'Tomato', price: 0.90, quantity: 25 };
+            let productThree = { name: 'Bread', price: 1.10, quantity: 8 };
+            // create storage obj
+            let storage = new Storage(50);
+            storage.addProduct(productOne);
+            storage.addProduct(productTwo);
+            storage.addProduct(productThree);
+            storage.getProducts();
+            console.log(storage.capacity);
+            console.log(storage.totalCost);
+            
+            console.log();
+        }
+
 // ASSIGN METHOD
     // The Object.assign() method copies all enumerable
     // own properties from one or more source objects
-    // to a target object. It returns the target object.
+    // from one or more source objects to a target object.
+    // It returns the modified target object.
 
     const target = { a: 1, b: 2 };
     const source = { b: 4, c: 5 };
@@ -2282,6 +2432,30 @@ person.shout();
     let objEntries = Object.entries(assignedObj);
     
     console.log(assignedObj);
+
+     // instead of this
+     function makeADictionary(input = []) {
+        let dict = {};
+        for (const line of input) {
+            let currObj = JSON.parse(line);
+            let entries = Object.entries(currObj);
+            let [term, description] = [entries[0][0], entries[0][1]];
+            dict[term] = description;
+        }
+        return getOutput(dict);
+    }
+
+    // do this
+    function makeADictionary(input = []) {
+        let dict = {};
+
+        for (const el of input) {
+            let obj = JSON.parse(el);
+            dict = Object.assign(dict, obj);
+        }
+        return;
+    }
+
     
 // LOOPS
     let fruits = ['banana', 'apple', 'orange', 'kiwi'];
@@ -2372,3 +2546,118 @@ for (const [key, value] of entries) {
 // JS has 3 data types that are copied by having their reference copied:
     // Array, Objects and Functions
     // these are all technically Objects, so we'll refer to them collectively as Objects
+
+    
+// GOOD Object EXAMPLE USING FUNCTIONS
+function systemRegister(input = []) {
+    function addSystem(systemName) {
+        if (!obj.hasOwnProperty(systemName)) {
+            obj[systemName] = {};
+        }
+    }
+
+    function addComponent(systemName, componentName) {
+        if (!obj[systemName].hasOwnProperty(componentName)) {
+            obj[systemName][componentName] = [];
+        }
+    }
+
+    function addSubComponent(systemName, componentName, subComponentName) {
+        if (obj[systemName].hasOwnProperty(componentName)) {
+            obj[systemName][componentName].push(subComponentName);
+        }
+    }
+
+    function addAll(systemName, componentName, subComponentName) {
+        addSystem(systemName);
+        addComponent(systemName, componentName);
+        addSubComponent(systemName, componentName, subComponentName);
+    }
+
+    function getOutput(sortedKeys) {
+        let output = [];
+        sortedKeys.forEach(key => {
+            let sortSubKeys = Object.keys(obj[key]).sort((a, b) => {
+                let bValueLength = Object.keys(obj[key][b]).length;
+                let aValueLength = Object.keys(obj[key][a]).length;
+                return bValueLength - aValueLength;
+            });
+    
+            output.push(key);
+            sortSubKeys.forEach(subKey => {
+                output.push(`|||${subKey}`);
+                obj[key][subKey].forEach((subComponent => {
+                    output.push(`||||||${subComponent}`);
+                }));
+            });
+        });
+        return output.join('\n');
+    }
+
+    let obj = {};
+    while (input.length > 0) {
+        let [systemName, componentName, subComponentName] = input.shift().split(' | ');
+        addAll(systemName, componentName, subComponentName);
+    }
+
+    let sortedKeys = Object.keys(obj).sort((a, b) => {
+        let bValueLength = Object.keys(obj[b]).length;
+        let aValueLength = Object.keys(obj[a]).length;
+
+        if (bValueLength - aValueLength === 0) {
+            return a.localeCompare(b);
+        }
+
+        return bValueLength - aValueLength;
+    });
+
+    return getOutput(sortedKeys);
+}
+
+// console.log(
+//     systemRegister(
+//         [
+//             'SULS | Main Site | Home Page',
+//             'SULS | Main Site | Login Page',
+//             'SULS | Main Site | Register Page',
+//             'SULS | Judge Site | Login Page',
+//             'SULS | Judge Site | Submittion Page',
+//             'Lambda | CoreA | A23',
+//             'SULS | Digital Site | Login Page',
+//             'Lambda | CoreB | B24',
+//             'Lambda | CoreA | A24',
+//             'Lambda | CoreA | A25',
+//             'Lambda | CoreC | C4',
+//             'Indice | Session | Default Storage',
+//             'Indice | Session | Default Security',
+//         ]
+//     )
+// );
+
+function classLaptop() {
+    class Laptop {
+        constructor(info, quality) {
+            this.info = info;
+            this.quality = quality;
+            this.isOn = false;
+        }
+
+        turnOn() { this.isOn = true; this.quality -= 1; };
+        turnOff() { this.isOn = false; this.quality -= 1; };
+        showInfo() { return JSON.stringify(this.info); };
+        // get returns current price of the laptop
+        get price() { return 800 - (this.info.age * 2) + (this.quality * 0.5); };
+    }
+
+    let info = { producer: "Dell", age: 2, brand: "XPS" };
+    let laptop = new Laptop(info, 10);
+    laptop.turnOn();
+    console.log(laptop.showInfo());
+    laptop.turnOff();
+    console.log(laptop.quality);
+    laptop.turnOn();
+    console.log(laptop.isOn);
+    console.log(laptop.price);
+}
+
+

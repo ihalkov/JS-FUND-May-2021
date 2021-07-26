@@ -413,6 +413,7 @@ function storeProvision(stock, ordered) {
     let totalStock = [...stock, ...ordered];
     let output = [];
     let storage = {};
+    // can use assign
     storage = putDataInObj(totalStock);
 
     Object.entries(storage).forEach(([product, quantity]) => {
@@ -461,7 +462,6 @@ class Vehicle {
 // console.log(vehicle.parts.quality);
 
 function classStorage() {
-
     class Storage {
         constructor(capacity) {
             this.capacity = capacity;
@@ -708,15 +708,15 @@ function classLaptop() {
         get price() { return 800 - (this.info.age * 2) + (this.quality * 0.5); };
     }
 
-    let info = { producer: "Dell", age: 2, brand: "XPS" }
-    let laptop = new Laptop(info, 10)
-    laptop.turnOn()
-    console.log(laptop.showInfo())
-    laptop.turnOff()
-    console.log(laptop.quality)
-    laptop.turnOn()
-    console.log(laptop.isOn)
-    console.log(laptop.price)
+    let info = { producer: "Dell", age: 2, brand: "XPS" };
+    let laptop = new Laptop(info, 10);
+    laptop.turnOn();
+    console.log(laptop.showInfo());
+    laptop.turnOff();
+    console.log(laptop.quality);
+    laptop.turnOn();
+    console.log(laptop.isOn);
+    console.log(laptop.price);
 }
 
 function flightSchedule(input = []) {
@@ -836,4 +836,3 @@ function flightSchedule(input = []) {
         // by this indexes we can call particular fruit
         console.log(`ind: ${ind} => ${fruits[ind]}`);
     }
-
