@@ -275,44 +275,44 @@ function arenaTier(input = []) {
     }
 }
 
-arenaTier([
-        'Pesho -> Duck -> 400',
-        'Julius -> Shield -> 150',
-        'Gladius -> Heal -> 200',
-        'Gladius -> Support -> 250',
-        'Gladius -> Shield -> 250',
-        'Pesho vs Gladius',
-        'Gladius vs Julius'
-]);
+// arenaTier([
+//         'Pesho -> Duck -> 400',
+//         'Julius -> Shield -> 150',
+//         'Gladius -> Heal -> 200',
+//         'Gladius -> Support -> 250',
+//         'Gladius -> Shield -> 250',
+//         'Pesho vs Gladius',
+//         'Gladius vs Julius'
+// ]);
 
-arenaTier([
-    'Pesho -> BattleCry -> 400',
-    'Gosho -> PowerPunch -> 300',
-    'Stamat -> Duck -> 200',
-    'Stamat -> Tiger -> 250',
-    'Ave Cesar'
-]);
+// arenaTier([
+//     'Pesho -> BattleCry -> 400',
+//     'Gosho -> PowerPunch -> 300',
+//     'Stamat -> Duck -> 200',
+//     'Stamat -> Tiger -> 250',
+//     'Ave Cesar'
+// ]);
 
-arenaTier([
-    'Peter -> BattleCry -> 400',
-    'Alex -> PowerPunch -> 400',
-    'Stefan -> Duck -> 200',
-    'Stefan -> Dack -> 100',
-    // 'Stefan -> Tiger -> 250',
-    'Ave Cesar'
-]);
+// arenaTier([
+//     'Peter -> BattleCry -> 400',
+//     'Alex -> PowerPunch -> 400',
+//     'Stefan -> Duck -> 200',
+//     'Stefan -> Dack -> 100',
+//     // 'Stefan -> Tiger -> 250',
+//     'Ave Cesar'
+// ]);
 
-arenaTier([
-    'Pesho -> Duck -> 400',
-    'Julius -> Shield -> 150',
-    'Gladius -> Heal -> 200',
-    'Gladius -> Support -> 250',
-    'Gladius -> Shield -> 250',
-    'Peter vs Gladius',
-    'Gladius vs Julius',
-    'Gladius vs Maximilian',
-    'Ave Cesar'
-]);
+// arenaTier([
+//     'Pesho -> Duck -> 400',
+//     'Julius -> Shield -> 150',
+//     'Gladius -> Heal -> 200',
+//     'Gladius -> Support -> 250',
+//     'Gladius -> Shield -> 250',
+//     'Peter vs Gladius',
+//     'Gladius vs Julius',
+//     'Gladius vs Maximilian',
+//     'Ave Cesar'
+// ]);
 
 function oddOccurrences(input) {
     let sentence = input.toLowerCase().split(' ');
@@ -356,9 +356,9 @@ function piccolo(input = []) {
     return getOutput(output);
 
     function getOutput(arr = []) {
-        return arr.length === 0
-        ? 'Parking Lot is Empty'
-        : arr.sort((a, b) => a.localeCompare(b)).join('\n');
+        return arr.length === 0 ?
+        'Parking Lot is Empty' :
+        arr.sort((a, b) => a.localeCompare(b)).join('\n');
     }
 
     function filterCarsIn(parking) {
@@ -432,7 +432,8 @@ function partyTime(input = []) {
     }
 
     let partyInd = input.indexOf('PARTY');
-    let [guests, guestsComing] = [input.slice(0, partyInd), input.slice(++partyInd)];
+    let [guests, guestsComing] = [input.slice(0, partyInd),
+        input.slice(++partyInd)];
     let [vip, regular] = fillLists(guests);
     let fullList = [...vip, ...regular];
 
@@ -607,12 +608,12 @@ function companyUsers(input = []) {
 
     for (const line of input) {
         let [company, id] = line.split(' -> ');
-
         companies = addCompany(company);
         companies = addId(company, id);
     }
 
-    let sortAsc = Array.from(companies.keys()).sort((a, b) => a.localeCompare(b));
+    let sortAsc = Array.from(companies.keys())
+        .sort((a, b) => a.localeCompare(b));
     displayResult(sortAsc, companies);
 
     function displayResult(sortAsc, companies) {

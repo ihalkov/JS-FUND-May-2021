@@ -1,18 +1,18 @@
-let number = '';
-
-console.log(Number(number));
-// 48 to 57
-
-function isNumber(ch = '') {
-    let code = ch.charCodeAt(0);
-    if (code >= 48 && code <= 57) {
-        return true;
-    }
-    return false;
+// another way
+function wordsTracker(array) {
+    let wantedWords = array.shift().split(' ');
+    let wantedWordsCounts = {};
+    wantedWords.forEach(word => wantedWordsCounts[word] = 0);
+    // check if the word exist in array and if so then update the object
+    array.forEach(word => word in wantedWordsCounts &&
+        wantedWordsCounts[word]++);
+    wantedWords.sort((a, b) => wantedWordsCounts[b] - wantedWordsCounts[a]);
+    wantedWords.forEach(word =>
+        console.log(`${word} - ${wantedWordsCounts[word]}`));
 }
 
-let obj = {
-    1: 1
-}
-
-console.log(obj['1']);
+wordsTracker(
+    [
+        'this sentence', 'In', 'this', 'sentence', 'you', 'have', 'to', 'count', 'the', 'occurances', 'of', 'the', 'words', 'this', 'and', 'sentence', 'because', 'this', 'is', 'your', 'task'
+    ]
+);
