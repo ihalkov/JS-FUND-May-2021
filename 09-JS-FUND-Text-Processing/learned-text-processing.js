@@ -188,3 +188,153 @@ function censoredWords(text, word) {
 
 // padStart()
 // padEnd()
+
+function substring(string = '', startInd, count) {
+    return string.substr(startInd, count);
+}
+
+
+// replace example
+function censoredWords(text = '', word = '') {
+    // let censor = text.replace(word, '*'.repeat(word.length));
+    while (text.includes(word)) {
+        text = text.replace(word, '*'.repeat(word.length));
+    }
+
+    return text;
+}
+
+function removeOccurrences(word = '', text = '') {
+    while (text.includes(word)) {
+        text = text.replace(word, '');
+    }
+    return text;
+}
+
+// removeOccurrences('ice', 'kicegiciceeb');
+
+
+// next()
+function stringIterator(str = '') {
+    let result = str.split(' ');
+    const iterator1 = result[Symbol.iterator]();
+
+// Once created, an iterator object can be iterated
+    // explicitly by repeatedly calling next().
+    for (let i = 0; i < result.length; i++) {
+        console.log(iterator1.next().value);
+    }
+    
+    for (let i = 0; i < result.length; i++) {
+        console.log(iterator1.next().value);
+    }
+}
+
+// stringIterator('Et cillum do voluptate cillum ut cupidatat aliqua.');
+
+function valueOfAString([str, check]) {
+    let sum = 0;
+
+    for (const ch of str) {
+        let chCode = ch.charCodeAt(0);
+        if (check === 'UPPERCASE' && (chCode >= 65 && chCode <= 90)) {
+            sum += chCode;
+            continue;
+        } else if (check === 'LOWERCASE' && (chCode >= 97 && chCode <= 122)) {
+            sum += chCode;
+        }
+    }
+    return `The total sum is: ${sum}`;
+}
+
+// console.log(valueOfAString(
+//     ['HelloFromMyAwesomePROGRAM',
+//     'LOWERCASE']
+// ));
+// console.log(valueOfAString(
+//     ['AC/DC',
+//     'UPPERCASE']
+// ));
+
+function serializeString([str = '']) {
+    let journal = {};
+
+    for (const ind in str) {
+        let ch = str[ind];
+        // if not journal with this ind,
+            // create new arr and put the ind in the arr with given key
+        journal[ch] = (journal[ch] || []).concat(ind);
+    }
+
+    let entries = Object.entries(journal);
+    let output = [];
+    for (const [ch, value] of entries) {
+        output.push(`${ch}:${value.join('/')}`);
+    }
+    return output.join('\n');
+}
+
+// console.log(serializeString(
+//     ['abababa']
+// ));
+
+// console.log(serializeString(
+//     ['avjavamsdmcalsdm']
+// ));
+
+function revealWords(words = '', text = '') {
+    wordsArr = words.split(', ');
+
+    // word length
+    for (const word of wordsArr) {
+        // let wordLength = word.length;
+        let stars = '*'.repeat(word.length);
+        text = text.replace(stars, word);
+    }
+    return text;
+}
+
+// console.log(revealWords(
+//     'great',
+//     'softuni is ***** place for learning new programming languages'
+// ));
+
+// console.log(revealWords(
+//     'great, learning',
+//     'softuni is ***** place for ******** new programming languages'
+// ));
+
+function modernTimesOfHashTag(str = '') {
+    function isValid(word) {
+        word = word.toLowerCase().slice(1);
+        for (const ch of word) {
+            if (ch.charCodeAt(0) < 97 || ch.charCodeAt(0) > 122) {
+                return false;
+            }
+
+        }
+
+        return true;
+    };
+
+    let words = str.split(' ');
+    let output = [];
+    for (const word of words) {
+        // 97 to 122
+        if (word.startsWith('#') && word.length > 1) {
+            // let lowercaseWord = word.toLowerCase().slice(1);
+
+            if (isValid(word)) {
+                output.push(word.slice(1));
+            }
+        }
+    }
+
+    return output.join('\n');
+}
+
+// console.log(
+//     modernTimesOfHashTag(
+//         'Nowadays everyone uses # to tag a #special word in #socialMedia'
+//     )
+// );

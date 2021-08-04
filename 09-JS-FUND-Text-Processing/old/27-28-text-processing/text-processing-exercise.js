@@ -3,8 +3,8 @@ function revealWords(words = '', text = '') {
 
     // word length
     for (const word of wordsArr) {
-        let wordLength = word.length;
-        let stars = '*'.repeat(wordLength);
+        // let wordLength = word.length;
+        let stars = '*'.repeat(word.length);
         text = text.replace(stars, word);
     }
     return text;
