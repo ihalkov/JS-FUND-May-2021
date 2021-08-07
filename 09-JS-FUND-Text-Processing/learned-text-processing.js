@@ -8,6 +8,7 @@
 
     let string = "K'vo staa";
     let quote = '"Mudra misyul" Nqkoj si';
+
     // slowest
     let interpolation = `${string} - ${quote}`;
 
@@ -20,36 +21,49 @@
     text = 'K\'vo staa';
     text[1] = 'a';
 
+    // returning the same value is not changed
     console.log(text);
     
     // think of string like value type
     // when add to the string, we rewrite it
     
     // Processing each of the items in a collection is a very common operation.
-    // JavaScript provides a number of ways of iterating over a collection, from simple for loops to map() and filter().
+    // JavaScript provides a number of ways of iterating over a collection,
+        // from simple for loops to map() and filter().
 
     // Iterators
-        // In JavaScript an iterator is an object which defines a sequence and potentially a return value upon its termination.
-        // Once created, an iterator object can be iterated explicitly by repeatedly calling next().
+        // In JavaScript an iterator is an object which defines a sequence
+            // and potentially a return value upon its termination.
+        // Once created, an iterator object can be iterated explicitly
+            // by repeatedly calling next().
 
-        // Iterating over an iterator is said to consume the iterator, because it is generally only possible to do once.
-        // After a terminating value has been yielded additional calls to next() should continue to return {done: true}.
-        // The most common iterator in JavaScript is the Array iterator, which returns each value in the associated array in sequence.
-        // While it is easy to imagine that all iterators could be expressed as arrays, this is not true.
-        // Arrays must be allocated in their entirety, but iterators are consumed only as necessary.
-        // Because of this, iterators can express sequences of unlimited size, such as the range of integers between 0 and Infinity.
+        // Iterating over an iterator is said to consume the iterator,
+            // because it is generally only possible to do once.
+        // After a terminating value has been yielded additional calls to next()
+            // should continue to return {done: true}.
+        // The most common iterator in JavaScript is the Array iterator,
+            // which returns each value in the associated array in sequence.
+        // While it is easy to imagine
+            // that all iterators could be expressed as arrays,
+            // this is not true.
+        // Arrays must be allocated in their entirety,
+            // but iterators are consumed only as necessary.
+        // Because of this, iterators can express sequences of unlimited size,
+            // such as the range of integers between 0 and Infinity.
 
         function stringIterator(str = '') {
             let result = str.split(' ');
             const iterator1 = result[Symbol.iterator]();
         
-            // Once created, an iterator object can be iterated explicitly by repeatedly calling next().
+            // Once created,
+                // an iterator object can be iterated explicitly
+                // by repeatedly calling next().
             for (let i = 0; i < result.length; i++) {
                 console.log(iterator1.next().value);
             }
         }
         
-        stringIterator('Et cillum do voluptate cillum ut cupidatat aliqua.');
+        // stringIterator('Et cillum do voluptate cillum ut cupidatat aliqua.');
 
 
         // Concat
@@ -75,6 +89,7 @@ text = 'Az sym bylgarche obicham sym bylgarche';
 let index = text.indexOf('sym');
 while (index >= 0) {
     console.log(index);
+    // gives next index
     index = text.indexOf('sym', ++index);
 }
 
@@ -119,8 +134,9 @@ let num = '101';
 console.log(num.padStart(8, 0));
 console.log(num.padEnd(8, 0));
 
-// if not journal with this ind, create new arr and put the ind in the arr with given key
-journal[ch] = (journal[ch] || []).concat(ind);
+// if not journal with this ind,
+    // create new arr and put the ind in the arr with given key
+    journal[ch] = (journal[ch] || []).concat(ind);
 
 
 // let seqLength = seq.length;
@@ -128,7 +144,7 @@ journal[ch] = (journal[ch] || []).concat(ind);
 //     let ch = str[ind];
 //     let chCode = ch.charCodeAt(0);
 
-//     // index of the number in seq
+    // index of the number in seq
     let numInd = ind % seqLength;
 
     // str.indexOf(ch);
@@ -148,16 +164,19 @@ function stringSubstring(word = '', text = '') {
     word = word.toLowerCase();
     text = text.toLowerCase();
 
-    return word.split(' ').find(key => key === word) ? word : `${word} not found`;
+    return word.split(' ').find(key => key === word) ?
+        word : `${word} not found`;
 }
 
-// console.log(stringSubstring('javascript', 'JavaScript is the best programming language'));
+// console.log(stringSubstring('javascript',
+//     'JavaScript is the best programming language'));
 
 console.log(filterExample());
 
 function filterExample() {
     let str = 'aaaaabbbbbcddddeeeedsssaaa';
-    let edited = str.split('').filter((ch, ind, arr) => ch !== arr[ind + 1]).join('');
+    let edited = str.split('').filter((ch, ind, arr) =>
+        ch !== arr[ind + 1]).join('');
     return edited;
 }
 
@@ -338,3 +357,128 @@ function modernTimesOfHashTag(str = '') {
 //         'Nowadays everyone uses # to tag a #special word in #socialMedia'
 //     )
 // );
+
+function stringSubstring(word, text) {
+    word = word.toLowerCase();
+    let arr = text.toLowerCase().split(' ');
+    // let found = false;
+    arr.forEach(x => {
+        if (x === word) {
+            // found = true;
+            return word;
+        }
+    });
+
+    // if (found) {
+    //     return word;
+    // }
+    return `${word} not found!`;
+}
+
+// console.log(stringSubstring(
+//     'javascript',
+//     ' is the best programming language JavaScript'
+// ));
+// console.log(stringSubstring(
+//     'python',
+//     'JavaScript is the best programming language'
+// ));
+// console.log(stringSubstring(
+//     '',
+//     'JavaScript is the best programming language'
+// ));
+
+function stringSubstring(word = '', text = '') {
+    word = word.toLowerCase();
+    text = text.toLowerCase();
+
+    return word.split(' ').find(key => key === word) ?
+        word : `${word} not found`;
+}
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript   is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'javascript', 'JavaScript is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript     is the best    programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'python', 'JavaScript is the best programming language'
+//     )
+// );
+
+function replaceRepeatingChars(str = '') {
+    let prevCh = str[0];
+    let newStr = prevCh;
+    // here is creating always new variable in the loop
+    for (let i = 1; i < str.length; i++) {
+        let currCh = str[i];
+        if (currCh !== prevCh) {
+            newStr += currCh;
+        }
+        prevCh = currCh;
+    }
+    return newStr;
+}
+
+// console.log(replaceRepeatingChars('aaaaabbbbbcdddeeeedssaa'));
+// console.log(replaceRepeatingChars('qqqwerqwecccwd'));
+
+
+function replaceRepeatingChars(str = '') {
+    // try to assign default variables to not be confusing
+    let output = '';
+    let oldCh = '';
+
+    // here not, but ch is also new variable
+    for (const ch of str) {
+        if (oldCh !== ch) {
+            oldCh = ch;
+            output += ch;
+        }
+    }
+    return output;
+}
+
+// console.log(replaceRepeatingChars(''));
+// console.log(replaceRepeatingChars('aaaaabbbbbcdddeeeedssaa'));
+// console.log(replaceRepeatingChars('qqqwerqwecccwd'));
+
+function pascalCaseSplitter(str = '') {
+    let strLength = str.length;
+    let ch = str[0];
+    let currWord = ch;
+    let words = [];
+    for (let i = 1; i < strLength; i++) {
+        ch = str[i];
+        // here is not so good,
+            // because first is making the char to uppercase
+            // and then checking it
+        // when is with chCode, first is finding charCode and then checking,
+            // which is the same :D
+        if (ch === ch.toUpperCase()) {
+            words.push(currWord);
+            currWord = '';
+        }
+        currWord += ch;
+    }
+    words.push(currWord);
+    return words.join(', ');
+}
+
+// console.log(pascalCaseSplitter('SplitMeIfYouCanHaHaYouCantOrYouCan'));
+// console.log(pascalCaseSplitter('HoldTheDoor'));
+// console.log(pascalCaseSplitter('ThisIsSoAnnoyingToDo'));

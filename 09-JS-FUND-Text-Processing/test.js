@@ -1,34 +1,21 @@
-function modernTimesOfHashTag(str = '') {
-    function isValid(word) {
-        word = word.toLowerCase().slice(1);
-        for (const ch of word) {
-            if (ch.charCodeAt(0) < 97 || ch.charCodeAt(0) > 122) {
-                return false;
-            }
+function serializeString([str = '']) {
+    let journal = {};
 
-        }
-
-        return true;
-    };
-
-    let words = str.split(' ');
-    let output = [];
-    for (const word of words) {
-        // 97 to 122
-        if (word.startsWith('#') && word.length > 1) {
-            // let lowercaseWord = word.toLowerCase().slice(1);
-
-            if (isValid(word)) {
-                output.push(word.slice(1));
-            }
-        }
+    for (const ind in str) {
+        let ch = str[ind];
+        // if not journal with this ind,
+            // create new arr and put the ind in the arr with given key
+        journal[ch] = (journal[ch] || []).concat(ind);
     }
+    let entries = Object.entries(journal);
 
+    let output = [];
+    for (const [ch, value] of entries) {
+        output.push(`${ch}:${value.join('/')}`);
+    }
     return output.join('\n');
 }
 
-console.log(
-    modernTimesOfHashTag(
-        'Nowadays everyone uses # to tag a #spec/ial word in #socialMedia'
-    )
-);
+console.log(serializeString(
+    ['abababa']
+));

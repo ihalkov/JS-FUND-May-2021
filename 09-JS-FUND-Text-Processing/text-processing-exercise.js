@@ -124,7 +124,8 @@ function extractFile(str = '') {
     let backSlashInd = str.lastIndexOf('\\');
     let file = str.substring(backSlashInd + 1);
     let lastDotInd = file.lastIndexOf('.');
-    let [name, extension] = [file.substring(0, lastDotInd), file.substring(lastDotInd + 1)];
+    let [name, extension] = [file.substring(0, lastDotInd),
+        file.substring(lastDotInd + 1)];
     let output = [];
     output.push(`File name: ${name}`);
     output.push(`File extension: ${extension}`);
@@ -137,17 +138,17 @@ function extractFile(str = '') {
 function stringSubstring(word, text) {
     word = word.toLowerCase();
     let arr = text.toLowerCase().split(' ');
-    let found = false;
+    // let found = false;
     arr.forEach(x => {
         if (x === word) {
-            found = true;
-            return;
+            // found = true;
+            return word;
         }
     });
 
-    if (found) {
-        return word;
-    }
+    // if (found) {
+    //     return word;
+    // }
     return `${word} not found!`;
 }
 
@@ -164,9 +165,42 @@ function stringSubstring(word, text) {
 //     'JavaScript is the best programming language'
 // ));
 
+function stringSubstring(word = '', text = '') {
+    word = word.toLowerCase();
+    text = text.toLowerCase();
+
+    return word.split(' ').find(key => key === word) ?
+        word : `${word} not found`;
+}
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript   is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'javascript', 'JavaScript is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript     is the best    programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'python', 'JavaScript is the best programming language'
+//     )
+// );
+
 function replaceRepeatingChars(str = '') {
     let prevCh = str[0];
     let newStr = prevCh;
+    // here is creating always new variable in the loop
     for (let i = 1; i < str.length; i++) {
         let currCh = str[i];
         if (currCh !== prevCh) {
@@ -180,6 +214,26 @@ function replaceRepeatingChars(str = '') {
 // console.log(replaceRepeatingChars('aaaaabbbbbcdddeeeedssaa'));
 // console.log(replaceRepeatingChars('qqqwerqwecccwd'));
 
+
+function replaceRepeatingChars(str = '') {
+    // try to assign default variables to not be confusing
+    let output = '';
+    let oldCh = '';
+
+    // here not, but ch is also new variable
+    for (const ch of str) {
+        if (oldCh !== ch) {
+            oldCh = ch;
+            output += ch;
+        }
+    }
+    return output;
+}
+
+// console.log(replaceRepeatingChars(''));
+// console.log(replaceRepeatingChars('aaaaabbbbbcdddeeeedssaa'));
+// console.log(replaceRepeatingChars('qqqwerqwecccwd'));
+
 function pascalCaseSplitter(str = '') {
     let strLength = str.length;
     let ch = str[0];
@@ -187,7 +241,11 @@ function pascalCaseSplitter(str = '') {
     let words = [];
     for (let i = 1; i < strLength; i++) {
         ch = str[i];
-
+        // here is not so good,
+            // because first is making the char to uppercase
+            // and then checking it
+        // when is with chCode, first is finding charCode and then checking,
+            // which is the same :D
         if (ch === ch.toUpperCase()) {
             words.push(currWord);
             currWord = '';
@@ -204,7 +262,8 @@ function pascalCaseSplitter(str = '') {
 
 function cutAndReverse(str = '') {
     let halfLength = str.length / 2;
-    let [firstHalf, secondHalf] = [str.substring(0, halfLength), str.substring(halfLength)];
+    let [firstHalf, secondHalf] = [str.substring(0, halfLength),
+        str.substring(halfLength)];
     firstHalf = firstHalf.split('').reverse().join('');
     secondHalf = secondHalf.split('').reverse().join('');
     return [firstHalf, secondHalf].join('\n');

@@ -91,12 +91,33 @@ function stringSubstring(word = '', text = '') {
     word = word.toLowerCase();
     text = text.toLowerCase();
 
-    return word.split(' ').find(key => key === word) ? word : `${word} not found`;
+    return word.split(' ').find(key => key === word) ?
+        word : `${word} not found`;
 }
-// console.log(stringSubstring('', 'JavaScript   is the best programming language'));
-// console.log(stringSubstring('javascript', 'JavaScript is the best programming language'));
-// console.log(stringSubstring('', 'JavaScript     is the best    programming language'));
-// console.log(stringSubstring('python', 'JavaScript is the best programming language'));
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript   is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'javascript', 'JavaScript is the best programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         '', 'JavaScript     is the best    programming language'
+//     )
+// );
+
+// console.log(
+//     stringSubstring(
+//         'python', 'JavaScript is the best programming language'
+//     )
+// );
 
 function replaceRepeatingChars(str = '') {
     let output = '';
