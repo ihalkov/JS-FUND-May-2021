@@ -1,7 +1,8 @@
 function furniture(input = []) {
     let store = [];
     let totalCost = 0;
-    let pattern = />>(?<name>[A-Za-z]+)<<(?<price>(?:\d+\.)?\d+)!(?<quantity>\d+)/;
+    let pattern =
+        />>(?<name>[A-Za-z]+)<<(?<price>(?:\d+\.)?\d+)!(?<quantity>\d+)/;
     let output = [];
     let currMatch;
 
@@ -9,6 +10,7 @@ function furniture(input = []) {
         if (currStr === 'Purchase') {
             break;
         }
+
         currMatch = currStr.match(pattern);
         if (currMatch === null) {
             continue;
@@ -20,6 +22,7 @@ function furniture(input = []) {
         store.push(name);
         totalCost += Number(price) * Number(quantity);
     }
+    
     output.push('Bought furniture:');
     if (store.length > 0) {
         output.push(...store);
