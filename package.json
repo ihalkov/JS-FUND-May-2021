@@ -1,0 +1,22 @@
+{
+  "name": "js-fund-may-2021",
+  "version": "1.0.0",
+  "main": "extraxt-values.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ihalkov/JS-FUND-May-2021.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ihalkov/JS-FUND-May-2021/issues"
+  },
+  "homepage": "https://github.com/ihalkov/JS-FUND-May-2021#readme",
+  "description": "",
+  "dependencies": {
+    "express-handlebars": "^5.3.3"
+  }
+}
