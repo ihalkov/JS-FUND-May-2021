@@ -4,6 +4,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const handlebars = require('express-handlebars');
 
+app.engine(".hbs", handlebars({
+    extname: '.hbs'
+}));
 app.set('view engine', 'handlebars');
 app.engine('handlebars', handlebars({
     // layoutsDir: __dirname + '/views/layouts',

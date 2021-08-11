@@ -29,4 +29,14 @@
     // CONTROLLER (logic)
         // implement the application logic
 
-// 
+
+// when you are in some sort of function you can press F12 and will bring you
+    // in the place where is created
+
+// always look documentation
+// class will define our data clearly
+
+// Object destructuring assignment
+let {name, number} = req.body;
+
+// ../two folders back
