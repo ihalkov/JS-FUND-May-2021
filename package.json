@@ -15,8 +15,10 @@
     "url": "https://github.com/ihalkov/JS-FUND-May-2021/issues"
   },
   "homepage": "https://github.com/ihalkov/JS-FUND-May-2021#readme",
-  "description": "",
   "dependencies": {
     "express-handlebars": "^5.3.3"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
 }
